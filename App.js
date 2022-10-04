@@ -1,117 +1,111 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-import type {Node} from 'react';
+import React, {useState} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
+import {
   StyleSheet,
-  Text,
-  useColorScheme,
   View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+const App = () =>
+  (React$Node = () => {
+    return (
+      <View style={styles.container}>
+        <View style={styles.topArea}>
+          <View style={styles.basicArea}>환영합니다.</View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+
+        <View style={styles.formArea}>
+          <View style={styles.Text}>ID</View>
+          <TextInput style={styles.textFormTop} placeholder={'아이디'} />
+          <View style={styles.Text}>PASSWORD</View>
+          <TextInput style={styles.textFormBottom} placeholder={'비밀번호'} />
+        </View>
+
+        <View style={{flex: 0.75}}>
+          <View style={styles.btnArea}>
+            <TouchableOpacity style={styles.btn}>
+              <Text style={(styles.Text, {color: 'white'})}>로그인</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={{flex: 3}} />
+      </View> //컨테이너 View
+    );
+  });
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    paddingLeft: wp(7),
+    paddingRight: wp(7),
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  topArea: {
+    flex: 1,
+    paddingTop: wp(2),
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  basicArea: {
+    flex: 0.7,
+    justifyContent: 'left',
+    paddingTop: wp(3),
   },
-  highlight: {
-    fontWeight: '700',
+  TextArea: {
+    flex: 0.3,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  Text: {
+    fontSize: wp('4%'),
+  },
+
+  formArea: {
+    justifyContent: 'center',
+    flex: 1.5,
+  },
+  textFormTop: {
+    borderWidth: 2,
+    borderBottomWidth: 1,
+    borderColor: 'black',
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+    width: '100%',
+    height: hp(6),
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  textFormBottom: {
+    borderWidth: 2,
+    borderTopWidth: 1,
+    borderColor: 'black',
+    borderBottomRightRadius: 7,
+    borderBottomLeftRadius: 7,
+    width: '100%',
+    height: hp(6),
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  btnArea: {
+    height: hp(8),
+    // backgroundColor: 'orange',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: hp(1.5),
+  },
+  btn: {
+    flex: 1,
+    width: '100%',
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0D47A1',
   },
 });
-
 export default App;
