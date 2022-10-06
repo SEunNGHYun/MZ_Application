@@ -11,6 +11,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 
 const App = () => {
@@ -18,96 +19,99 @@ const App = () => {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.topArea}>
-          <Text style={styles.helloText}>환영합니다.</Text>
+          <Text style={styles.helloText}>관심분야 선택 (중복)</Text>
         </View>
-
-        <View style={styles.formArea}>
-          <Text style={styles.Text}>ID</Text>
-          <TextInput style={styles.textFormTop} placeholder={'아이디'} />
-          <Text style={styles.Text}>PASSWORD</Text>
-          <TextInput style={styles.textFormBottom} placeholder={'비밀번호'} />
-          
-          <TouchableOpacity style={styles.btn}>
-            <Text style={(styles.Text, {color: 'white'})}>로그인</Text>
-          </TouchableOpacity>
+        <View style={styles.middleArea}>
+          <ScrollView>
+            <View style={styles.selectArea}>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+            </View>
+            <View style={styles.selectArea}>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+            </View>
+            <View style={styles.selectArea}>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+            </View>
+            <View style={styles.selectArea}>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+              <TouchableOpacity style={styles.favoritBtn}></TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
-
         <View style={styles.btnArea2}>
-          <TouchableOpacity style={styles.grayBtn}>
-            <Text style={(styles.Text, {color: '#9b9b9b'})}>회원가입</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.grayBtn}>
-            <Text style={(styles.Text, {color: '#9b9b9b'})}>비밀번호를 잊으셨나요?</Text>
+          <TouchableOpacity style={styles.btn}>
+            <Text style={(styles.Text, {color: 'white'})}>회원가입</Text>
           </TouchableOpacity>
         </View>
-      </SafeAreaView> //컨테이너 View
-    )
-  }
-  return React$Node()
-}
-
+      </SafeAreaView>
+      //컨테이너 View
+    );
+  };
+  return React$Node();
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal : 15,
+    marginHorizontal: 15,
     flexDirection: 'column',
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 4,
-    justifyContent : 'center'
+    flex: 1,
+    justifyContent: 'center',
+  },
+  middleArea: {
+    flex: 5,
   },
   helloText: {
-    fontSize : 30
+    fontSize: 30,
+    paddingLeft: 10,
   },
   TextArea: {
     justifyContent: 'center',
     backgroundColor: 'white',
   },
-  Text: {
-  },
-
+  Text: {},
   formArea: {
     flex: 4,
-    justifyContent : 'space-between'
+    justifyContent: 'space-between',
   },
-  textFormTop: {
-    borderWidth: 2,
-    borderBottomWidth: 1,
-    borderColor: 'black',
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
+  selectArea: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    margin: 5,
+  },
+  btn: {
     width: '100%',
     height: hp(6),
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  textFormBottom: {
-    borderWidth: 2,
-    borderTopWidth: 1,
-    borderColor: 'black',
-    borderBottomRightRadius: 7,
-    borderBottomLeftRadius: 7,
-    width: '100%',
-    height: hp(6),
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  btn: {    
-    width: '100%',
-    height: hp(6),
-    borderRadius : 8,
+    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#0D47A1',
   },
-  btnArea2 : {
-    flex : 4,
-    justifyContent: "flex-start"
+  favoritBtn: {
+    width: 170,
+    height: 170,
+    borderWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: 'black',
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+    borderBottomLeftRadius: 7,
+    borderBottomRightRadius: 7,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginRight: 10,
   },
-  grayBtn :{
-    paddingTop : 18
-  }
+  btnArea2: {
+    flex: 1,
+    justifyContent: 'center',
+  },
 });
 export default App;
