@@ -14,7 +14,7 @@ export default function NewsComponent({item}) {
           source={{uri: "https://placehold.jp/006699/cccc00/150x100.jpg"}} />
           <View style={styles.newsTextForm}>
             <Text style={styles.newsTitle} numberOfLines={1} ellipsizeMode={'tail'}>{item.title}</Text>
-            <Text style={styles.newsExplan} numberOfLines={3} ellipsizeMode={'tail'}>{item.description}</Text>
+            <Text style={styles.newsExplan} numberOfLines={2} ellipsizeMode={'tail'}>{item.description}</Text>
           </View>
     </TouchableOpacity>
   )
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   newsForm : {
     width : wp('45%'),
     height : 150,
+    margin : 5
   },
   newsImage : {
     width : '100%',
