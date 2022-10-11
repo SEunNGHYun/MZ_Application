@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    height: hp(6),
+    height: (6),
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
