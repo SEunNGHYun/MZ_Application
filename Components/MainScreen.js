@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { SafeAreaView, View, Text, StyleSheet, FlatList, ScrollView} from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet, FlatList, ScrollView, Image} from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -43,18 +43,22 @@ export default function MainScreen() {
           }
         </ScrollView>
         <View style={styles.spaceForm}>
-          {placeList.length > 0 && (
-            <View style={styles.spaceBox}>
-            <Text style={[styles.headerTitle, {marginBottom : 10}]}>청년 공간</Text>
-            <ScrollView
-                horizontal 
-                showsHorizontalScrollIndicator={false}
-                style={styles.todayNews}
-                >
-              {placeList.map(place => <PlaceComponent key={place["spcId"]["_text"]} placeData={place}/>)}
-            </ScrollView>
-            </View>
-          )}
+          {placeList.length > 0 && 
+            (
+              <View style={styles.spaceBox}>
+                <Text style={[styles.headerTitle, {marginBottom : 10}]}>청년 공간</Text>
+                <View style={{flexDirection : 'row', height : '75%'}}>
+                  <Image
+                    style={styles.spaceImage}
+                    source={{uri: "https://placehold.jp/006699/cccc00/150x100.jpg"}} />
+                  <ScrollView
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.spaceDatas}>
+                    {placeList.map(place => <PlaceComponent key={place["spcId"]["_text"]} placeData={place}/>)}
+                </ScrollView>
+                </View>
+              </View>
+            )}
         </View>
     </SafeAreaView>
   )
@@ -74,7 +78,6 @@ const styles = StyleSheet.create({
   todayNews: {
     width : '100%',
     height : '55%',
-    
   }, 
   newsForm : {
     flexGrow : 1,
@@ -89,8 +92,17 @@ const styles = StyleSheet.create({
   },
   spaceBox : {
     borderWidth : 1,
-    paddingLeft : 5,
+    paddingHorizontal : 5,
     width : '90%',
     height : '70%'
+  },
+  spaceImage : {
+    width : '45%',
+    height : '100%',
+    marginRight : 7
+  },
+  spaceDatas : {
+    width : '45%',
+    height : '100%',
   }
 })

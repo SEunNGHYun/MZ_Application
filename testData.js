@@ -213,7 +213,7 @@ placeData :{
                         "_cdata": "-"
                     },
                     "rqutProcCn": {
-                        "_cdata": "이메일 ㅈ접수"
+                        "_cdata": "이메일 접수"
                     },
                     "jdgnPresCn": {
                         "_cdata": "-"
