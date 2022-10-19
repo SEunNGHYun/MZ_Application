@@ -13,7 +13,7 @@ import {
   TextInput,
 } from 'react-native';
 
-const App = () => {
+const LoginScreen = ({navigation}) => {
   const React$Node = () => {
     return (
       <SafeAreaView style={styles.container}>
@@ -33,7 +33,9 @@ const App = () => {
         </View>
 
         <View style={styles.btnArea2}>
-          <TouchableOpacity style={styles.grayBtn}>
+          <TouchableOpacity
+            style={styles.grayBtn}
+            onPress={() => navigation.navigate('Signup')}>
             <Text style={(styles.Text, {color: '#9b9b9b'})}>회원가입</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.grayBtn}>
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    height: (6),
+    height: 6,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -110,4 +112,4 @@ const styles = StyleSheet.create({
     paddingTop: 18,
   },
 });
-export default App;
+export default LoginScreen;
