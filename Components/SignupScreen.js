@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import PickerComponent from './Components/picker';
+import PickerComponent from './picker';
 
 import {
   StyleSheet,
@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const App = () => {
+const SignupScreen = ({navigation}) => {
   const [selectedAge, setSelectedAge] = useState();
   const [selectedState, setSelectedState] = useState();
   const [selectedCity, setSelectedCity] = useState();
@@ -52,7 +52,9 @@ const App = () => {
             </View>
           </View>
         </ScrollView>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => navigation.navigate('favorite')}>
           <Text style={(styles.Text, {color: 'white'})}>다음</Text>
         </TouchableOpacity>
       </SafeAreaView> //컨테이너 View
@@ -164,4 +166,4 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 });
-export default App;
+export default SignupScreen;
