@@ -3,8 +3,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import PickerComponent from './Components/picker';
-
+import {Picker} from '@react-native-picker/picker';
+import PickerComponent from './picker';
 import {
   StyleSheet,
   View,
@@ -15,46 +15,62 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+const SignupScreen = ({navigation}) => {
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [age, setAge] = useState(''); 
 
-const App = () => {
+
   const [selectedAge, setSelectedAge] = useState();
   const [selectedState, setSelectedState] = useState();
   const [selectedCity, setSelectedCity] = useState();
+
   const React$Node = () => {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.topArea}>
-          <Text style={styles.helloText}>회원가입.</Text>
+          <Text style={styles.helloText}>회원가입</Text>
         </View>
-        <ScrollView>
-          <Text style={styles.Text}>ID</Text>
-          <View style={styles.idArea}>
-            <TextInput style={styles.textFormTop} placeholder={'아이디'} />
-            <TouchableOpacity style={styles.checkBtn}>
-              <Text style={(styles.Text, {color: 'black'})}>중복체크</Text>
-            </TouchableOpacity>
-          </View>
           <View style={styles.formArea}>
-            <Text style={styles.Text}>PASSWORD</Text>
-            <TextInput
-              style={styles.textFormBottom}
-              placeholder={'영문, 숫자 조합 5글자 이상'}
-            />
-            <Text style={styles.Text}>PASSWORD Confirm</Text>
-            <TextInput
-              style={styles.textPasswordCheckBottom}
-              placeholder={'비밀번호 확인'}
-            />
-            <Text style={styles.Text}>나이선택</Text>
-            <View>
-              <PickerComponent />
+              <Text style={styles.Text}>ID</Text>
+                <TextInput 
+                  onChangeText={setId}
+                  style={styles.textInput} 
+                  placeholder={'아이디'}
+                  value={id}
+                />
+                <Text style={styles.Text}>PASSWORD</Text>
+                <TextInput
+                  onChangeTex={setPassword}
+                  value={password}
+                  style={styles.textInput}
+                  placeholder={'영문, 숫자 조합 5글자 이상'}
+                />
+                <Text style={styles.Text}>PASSWORD Confirm</Text>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={'비밀번호 확인'}
+                />
+                <Text style={styles.Text}>나이선택</Text>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder={'나이'}
+                />
+                <Text style={styles.Text}>지역</Text>
+                <View style={styles.areaSelectBox}>
+                  <TextInput
+                    style={styles.areaBoxStyle}
+                    placeholder={'도'}
+                  />
+                  <TextInput
+                    style={styles.areaBoxStyle}
+                    placeholder={'시'}
+                  />
+                </View>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("favorite")}>
+                  <Text style={{color : "white"}} >다음</Text>
+                </TouchableOpacity>
             </View>
-          </View>
-        </ScrollView>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={(styles.Text, {color: 'white'})}>다음</Text>
-        </TouchableOpacity>
       </SafeAreaView> //컨테이너 View
     );
   };
@@ -69,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 2,
+    flex : 1.8,
     justifyContent: 'center',
   },
   helloText: {
@@ -80,56 +96,33 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   Text: {},
-  idArea: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-  },
   formArea: {
-    flex: 4,
-    justifyContent: 'space-between',
+    flex : 5
   },
-  textFormTop: {
+  textInput: {
     borderWidth: 2,
-    borderBottomWidth: 2,
     borderColor: 'black',
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-    borderBottomLeftRadius: 7,
-    borderBottomRightRadius: 7,
-    flex: 7,
+    borderRadius : 7,
     height: hp(6),
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginRight: 10,
+    paddingHorizontal : 10,
+    marginVertical: 10  
   },
-  textFormBottom: {
-    borderWidth: 2,
-    borderTopWidth: 2,
-    borderColor: 'black',
-    borderBottomRightRadius: 7,
-    borderBottomLeftRadius: 7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-    width: '100%',
+  areaBoxStyle : {
+    width : '45%',
     height: hp(6),
-    paddingLeft: 10,
-    paddingRight: 10,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius : 7,
+    paddingHorizontal : 10,
+    marginVertical: 10,
   },
-  textPasswordCheckBottom: {
-    borderWidth: 2,
-    borderTopWidth: 2,
-    borderColor: 'black',
-    borderBottomRightRadius: 7,
-    borderBottomLeftRadius: 7,
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-    width: '100%',
-    height: hp(6),
-    paddingLeft: 10,
-    paddingRight: 10,
+  areaSelectBox: {
+    flexDirection : 'row',
+    justifyContent : 'space-between'
   },
   btn: {
+    marginTop : 20,
     width: '100%',
     height: hp(6),
     borderRadius: 8,
@@ -137,31 +130,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#0D47A1',
   },
-  btnAge: {
-    width: '100%',
-    height: hp(6),
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  checkBtn: {
-    flex: 3,
-    height: hp(6),
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    paddingLeft: 10,
-    paddingRight: 10,
-    borderWidth: 2,
-    borderTopWidth: 2,
-    marginLeft: 10,
-  },
-
-  btnArea2: {
-    flex: 4,
-    justifyContent: 'flex-start',
-  },
 });
-export default App;
+export default SignupScreen;
+
