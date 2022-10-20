@@ -27,7 +27,9 @@ const LoginScreen = ({navigation}) => {
           <Text style={styles.Text}>PASSWORD</Text>
           <TextInput style={styles.textFormBottom} placeholder={'비밀번호'} />
 
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.navigate('Title')}>
             <Text style={(styles.Text, {color: 'white'})}>로그인</Text>
           </TouchableOpacity>
         </View>
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0D47A1',
   },
   btnArea2: {
-    flex: 4,
+    flex: 3,
     justifyContent: 'flex-start',
   },
   grayBtn: {

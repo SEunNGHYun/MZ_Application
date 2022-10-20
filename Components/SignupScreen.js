@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import PickerComponent from './picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 import {
   StyleSheet,
@@ -15,7 +16,6 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 
 const SignupScreen = ({navigation}) => {
   const [selectedAge, setSelectedAge] = useState();

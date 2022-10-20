@@ -14,7 +14,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-const App = () => {
+const favoritScreen = ({navigation}) => {
   const React$Node = () => {
     return (
       <SafeAreaView style={styles.container}>
@@ -44,7 +44,7 @@ const App = () => {
         <View style={styles.btnArea2}>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => Alert.alert('회원가입이 완료되었습니다!')}>
+            onPress={() => navigation.popToTop('Login')}>
             <Text style={(styles.Text, {color: 'white'})}>회원가입</Text>
           </TouchableOpacity>
         </View>
@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-export default App;
+export default favoritScreen;
