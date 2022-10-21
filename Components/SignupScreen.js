@@ -5,6 +5,7 @@ import {
 } from 'react-native-responsive-screen';
 import {Picker} from '@react-native-picker/picker';
 import PickerComponent from './picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 import {
   StyleSheet,
   View,
@@ -15,6 +16,7 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
+
 const SignupScreen = ({navigation}) => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
