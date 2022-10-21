@@ -1,21 +1,24 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 
-export default function UserInfoBoxComponet() {
+export default function UserInfoBoxComponet({id, age, state, city, fav}) {
   return (
     <View style={styles.box}>
       <View />
       <View style={styles.iconNInfos}>
         <Image source={require('../assets/icon.png')} style={styles.icon}/>
         <View style={styles.infos}>
-          <Text style={styles.font}>아이디</Text>
-          <Text style={styles.font}>지역</Text>
-          <Text style={styles.font}>나이</Text>
+          <Text style={styles.font}>{id}</Text>
+          <View style={{flexDirection : "row"}}>
+            <Text style={styles.font}>{state} </Text>
+            <Text style={styles.font}>{city}</Text>
+          </View>
+          <Text style={styles.font}>{age}</Text>
         </View>
       </View>
       <View style={styles.intersets}>
         <Text style={styles.font}>관심 분야  </Text>
-        <Text style={styles.font}>#관심분야</Text>
+        {fav.map(({interest_field}, index) => <Text key={index} style={styles.font}>#{interest_field}</Text>)}
       </View>
     </View>
   )
