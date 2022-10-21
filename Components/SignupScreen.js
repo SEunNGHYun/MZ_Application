@@ -3,9 +3,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {Picker} from '@react-native-picker/picker';
-import PickerComponent from './picker';
-import DropDownPicker from 'react-native-dropdown-picker';
 import {
   StyleSheet,
   View,
@@ -13,66 +10,68 @@ import {
   SafeAreaView,
   TouchableOpacity,
   TextInput,
-  ScrollView,
+  Platform,
   Alert,
 } from 'react-native';
 
 const SignupScreen = ({navigation}) => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const [conformPassword, setConformPassword] = useState('')
   const [age, setAge] = useState(''); 
-
-
-  const [selectedAge, setSelectedAge] = useState();
-  const [selectedState, setSelectedState] = useState();
-  const [selectedCity, setSelectedCity] = useState();
 
   const React$Node = () => {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.topArea}>
-          <Text style={styles.helloText}>회원가입</Text>
+      <SafeAreaView style={{flex: 1}}>
+        <View style={styles.container}>
+          <View style={styles.topArea}>
+            <Text style={styles.helloText}>회원가입</Text>
+          </View>
+            <View style={styles.formArea}>
+                <Text style={styles.Text}>ID</Text>
+                  <TextInput 
+                    onChangeText={setId}
+                    style={styles.textInput} 
+                    placeholder={'아이디'}
+                    value={id}
+                  />
+                  <Text style={styles.Text}>PASSWORD</Text>
+                  <TextInput
+                    onChangeText={setPassword}
+                    value={password}
+                    style={styles.textInput}
+                    placeholder={'영문, 숫자 조합 5글자 이상'}
+                    secureTextEntry={true}
+                  />
+                  <Text style={styles.Text}>PASSWORD Confirm</Text>
+                  <TextInput
+                    value={conformPassword}
+                    onChangeText={setConformPassword}
+                    style={styles.textInput}
+                    placeholder={'비밀번호 확인'}
+                    secureTextEntry={true}
+                  />
+                  <Text style={styles.Text}>나이선택</Text>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder={'나이'}
+                  />
+                  <Text style={styles.Text}>지역</Text>
+                  <View style={styles.areaSelectBox}>
+                    <TextInput
+                      style={styles.areaBoxStyle}
+                      placeholder={'도'}
+                    />
+                    <TextInput
+                      style={styles.areaBoxStyle}
+                      placeholder={'시'}
+                    />
+                  </View>
+                  <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("favorite")}>
+                    <Text style={{color : "white"}} >다음</Text>
+                  </TouchableOpacity>
+              </View>
         </View>
-          <View style={styles.formArea}>
-              <Text style={styles.Text}>ID</Text>
-                <TextInput 
-                  onChangeText={setId}
-                  style={styles.textInput} 
-                  placeholder={'아이디'}
-                  value={id}
-                />
-                <Text style={styles.Text}>PASSWORD</Text>
-                <TextInput
-                  onChangeTex={setPassword}
-                  value={password}
-                  style={styles.textInput}
-                  placeholder={'영문, 숫자 조합 5글자 이상'}
-                />
-                <Text style={styles.Text}>PASSWORD Confirm</Text>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={'비밀번호 확인'}
-                />
-                <Text style={styles.Text}>나이선택</Text>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder={'나이'}
-                />
-                <Text style={styles.Text}>지역</Text>
-                <View style={styles.areaSelectBox}>
-                  <TextInput
-                    style={styles.areaBoxStyle}
-                    placeholder={'도'}
-                  />
-                  <TextInput
-                    style={styles.areaBoxStyle}
-                    placeholder={'시'}
-                  />
-                </View>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("favorite")}>
-                  <Text style={{color : "white"}} >다음</Text>
-                </TouchableOpacity>
-            </View>
       </SafeAreaView> //컨테이너 View
     );
   };
@@ -82,12 +81,12 @@ const SignupScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 15,
+    paddingHorizontal: 15,
     flexDirection: 'column',
     backgroundColor: 'white',
   },
   topArea: {
-    flex : 1.8,
+    flex : 1.3,
     justifyContent: 'center',
   },
   helloText: {
