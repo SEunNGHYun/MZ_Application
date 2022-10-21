@@ -17,8 +17,8 @@ import {
 const SignupScreen = ({navigation}) => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [conformPassword, setConformPassword] = useState('')
-  const [age, setAge] = useState(''); 
+  const [conformPassword, setConformPassword] = useState('');
+  const [age, setAge] = useState('');
 
   const React$Node = () => {
     return (
@@ -27,50 +27,43 @@ const SignupScreen = ({navigation}) => {
           <View style={styles.topArea}>
             <Text style={styles.helloText}>회원가입</Text>
           </View>
-            <View style={styles.formArea}>
-                <Text style={styles.Text}>ID</Text>
-                  <TextInput 
-                    onChangeText={setId}
-                    style={styles.textInput} 
-                    placeholder={'아이디'}
-                    value={id}
-                  />
-                  <Text style={styles.Text}>PASSWORD</Text>
-                  <TextInput
-                    onChangeText={setPassword}
-                    value={password}
-                    style={styles.textInput}
-                    placeholder={'영문, 숫자 조합 5글자 이상'}
-                    secureTextEntry={true}
-                  />
-                  <Text style={styles.Text}>PASSWORD Confirm</Text>
-                  <TextInput
-                    value={conformPassword}
-                    onChangeText={setConformPassword}
-                    style={styles.textInput}
-                    placeholder={'비밀번호 확인'}
-                    secureTextEntry={true}
-                  />
-                  <Text style={styles.Text}>나이선택</Text>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder={'나이'}
-                  />
-                  <Text style={styles.Text}>지역</Text>
-                  <View style={styles.areaSelectBox}>
-                    <TextInput
-                      style={styles.areaBoxStyle}
-                      placeholder={'도'}
-                    />
-                    <TextInput
-                      style={styles.areaBoxStyle}
-                      placeholder={'시'}
-                    />
-                  </View>
-                  <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("favorite")}>
-                    <Text style={{color : "white"}} >다음</Text>
-                  </TouchableOpacity>
-              </View>
+          <View style={styles.formArea}>
+            <Text style={styles.Text}>ID</Text>
+            <TextInput
+              onChangeText={setId}
+              style={styles.textInput}
+              placeholder={'아이디'}
+              value={id}
+            />
+            <Text style={styles.Text}>PASSWORD</Text>
+            <TextInput
+              onChangeText={setPassword}
+              value={password}
+              style={styles.textInput}
+              placeholder={'영문, 숫자 조합 5글자 이상'}
+              secureTextEntry={true}
+            />
+            <Text style={styles.Text}>PASSWORD Confirm</Text>
+            <TextInput
+              value={conformPassword}
+              onChangeText={setConformPassword}
+              style={styles.textInput}
+              placeholder={'비밀번호 확인'}
+              secureTextEntry={true}
+            />
+            <Text style={styles.Text}>나이선택</Text>
+            <TextInput style={styles.textInput} placeholder={'나이'} />
+            <Text style={styles.Text}>지역</Text>
+            <View style={styles.areaSelectBox}>
+              <TextInput style={styles.areaBoxStyle} placeholder={'도'} />
+              <TextInput style={styles.areaBoxStyle} placeholder={'시'} />
+            </View>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.navigate('favorite')}>
+              <Text style={{color: 'white'}}>다음</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView> //컨테이너 View
     );
@@ -86,7 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   topArea: {
-    flex : 1.3,
+    flex: 1.3,
     justifyContent: 'center',
   },
   helloText: {
@@ -98,32 +91,32 @@ const styles = StyleSheet.create({
   },
   Text: {},
   formArea: {
-    flex : 5
+    flex: 5,
   },
   textInput: {
     borderWidth: 2,
     borderColor: 'black',
-    borderRadius : 7,
+    borderRadius: 7,
     height: hp(6),
-    paddingHorizontal : 10,
-    marginVertical: 10  
+    paddingHorizontal: 10,
+    marginVertical: 10,
   },
-  areaBoxStyle : {
-    width : '45%',
+  areaBoxStyle: {
+    width: '45%',
     height: hp(6),
     borderRadius: 8,
     borderWidth: 2,
     borderColor: 'black',
-    borderRadius : 7,
-    paddingHorizontal : 10,
+    borderRadius: 7,
+    paddingHorizontal: 10,
     marginVertical: 10,
   },
   areaSelectBox: {
-    flexDirection : 'row',
-    justifyContent : 'space-between'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   btn: {
-    marginTop : 20,
+    marginTop: 20,
     width: '100%',
     height: hp(6),
     borderRadius: 8,
@@ -133,4 +126,3 @@ const styles = StyleSheet.create({
   },
 });
 export default SignupScreen;
-

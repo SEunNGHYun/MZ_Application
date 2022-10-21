@@ -20,7 +20,7 @@ import {heightPercentageToDP} from 'react-native-responsive-screen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const titleStack = ({Navigation}) => {
+const TitleStack = ({Navigation}) => {
   return (
     <Tab.Navigator
       initialRouteName="MainStack"
@@ -29,46 +29,65 @@ const titleStack = ({Navigation}) => {
         inactiveTintColor: '#222222',
       }}>
       <Tab.Screen
-        name="MainStack"
+        name="Main"
         component={MainScreen}
         options={{title: '메인화면'}}
       />
       <Tab.Screen
         name="ListStack"
-        component={PolicyListScreen}
+        component={PolicyListStack}
         options={{title: '정책리스트'}}
       />
       <Tab.Screen
         name="MypageStack"
-        component={MypageScreen}
+        component={MyPageStack}
         options={{title: '마이페이지'}}
       />
     </Tab.Navigator>
   );
 };
 
-const mainStack = () => {
+const PolicyListStack = ({Navigation}) => {
   return (
     <Stack.Navigator>
-      <mainStack.Screen name="Main" component={MainScreen} />
+      <PolicyListStack.Screen name="List" component={PolicyListScreen} />
+      <PolicyListStack.Screen name="Detail" component={PolicyDetailScreen} />
     </Stack.Navigator>
   );
 };
-const policyListStack = () => {
+
+const MyPageStack = ({Navigation}) => {
   return (
     <Stack.Navigator>
-      <policyListStack.Screen name="List" component={PolicyListScreen} />
-      <policyListStack.Screen name="Detail" component={PolicyDetailScreen} />
+      <MyPageStack.Screen name="Scrap" component={ScrapStack} />
+      <MyPageStack.Screen
+        name="ChangeUserInfo"
+        component={ChangeUserInfoStack}
+      />
     </Stack.Navigator>
   );
 };
-const myPageStack = () => {
+const ScrapStack = ({Navigation}) => {
   return (
     <Stack.Navigator>
-      <myPageStack.Screen name="scrap" component={PolicyListScreen} />
-      <myPageStack.Screen name="changeUserInfo" component={SignupScreen} />
+      <ScrapStack.Screen name="ScrapList" component={PolicyDetailScreen} />
+      <ScrapStack.Screen name="ScrapDetail" component={PolicyDetailScreen} />
     </Stack.Navigator>
-  );
+  ); //여기 리스트는 스크랩 해놓은거만
+};
+const ChangeUserInfoStack = ({Navigation}) => {
+  return (
+    <Stack.Navigator>
+      <ChangeUserInfoStack.Screen
+        name="changeUserInfoSignup"
+        component={SignupScreen}
+      />
+      <ChangeUserInfoStack.Screen
+        name="changeUserInfoSignup"
+        component={favoriteScreen}
+      />
+    </Stack.Navigator>
+  ); //여기 유저정보변경은 기존에서 바꾸는 회원가입창
 };
 
 export default function App() {
@@ -79,7 +98,7 @@ export default function App() {
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Signup" component={SignupScreen} />
           <Stack.Screen name="favorite" component={favoriteScreen} />
-          <Stack.Screen name="Title" component={titleStack} />
+          <Stack.Screen name="Title" component={TitleStack} />
         </Stack.Navigator>
       </NavigationContainer>
     );
