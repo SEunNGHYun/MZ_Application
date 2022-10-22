@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 
-export default function PolicyListScreen({Navigation}) {
+export default function PolicyListScreen({navigation}) {
   const [policyData, setPolicyData] = useState([]);
 
   useEffect(() => {
