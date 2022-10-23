@@ -1,26 +1,71 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+
 import LoginScreen from './Components/LoginScreen';
 import SignupScreen from './Components/SignupScreen';
-import favoriteScreen from './Components/favoriteScreen';
+import FavoriteSelectScreen from './Components/FavoriteSelectScreen';
 import MainScreen from './Components/MainScreen';
 import MypageScreen from './Components/MyPageScreen';
 import PolicyDetailScreen from './Components/PolicyDetailScreen';
 import PolicyListScreen from './Components/PolicyListScreen';
 
-import {
-  NavigationContainer,
-  StackActions,
-  TabActions,
-} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {heightPercentageToDP} from 'react-native-responsive-screen';
+import KeyProvider from './Components/KeyStore' 
+
+
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const TitleStack = ({Navigation}) => {
+const PolicyListStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="List" component={PolicyListScreen} />
+      <Stack.Screen name="Detail" component={PolicyDetailScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const MyPageStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Myinfo" component={MypageScreen} />
+      <Stack.Screen name="Scrap" component={ScrapStack} />
+      <Stack.Screen
+        name="ChangeUserInfo"
+        component={ChangeUserInfoStack}
+      />
+    </Stack.Navigator>
+  );
+};
+const ScrapStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="ScrapList" component={PolicyListScreen} />
+      <Stack.Screen name="ScrapDetail" component={PolicyDetailScreen} />
+    </Stack.Navigator>
+  ); //여기 리스트는 스크랩 해놓은거만
+};
+
+const ChangeUserInfoStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ChangeUserInfoSignup"
+        component={SignupScreen}
+      />
+      <Stack.Screen
+        name="ChangeUserInfoSignup"
+        component={FavoriteSelectScreen}
+      />
+    </Stack.Navigator>
+  ); //여기 유저정보변경은 기존에서 바꾸는 회원가입창
+};
+
+
+const TitleStack = () => {
   return (
     <Tab.Navigator
       initialRouteName="MainStack"
@@ -47,63 +92,21 @@ const TitleStack = ({Navigation}) => {
   );
 };
 
-const PolicyListStack = ({Navigation}) => {
-  return (
-    <Stack.Navigator>
-      <PolicyListStack.Screen name="List" component={PolicyListScreen} />
-      <PolicyListStack.Screen name="Detail" component={PolicyDetailScreen} />
-    </Stack.Navigator>
-  );
-};
-
-const MyPageStack = ({Navigation}) => {
-  return (
-    <Stack.Navigator>
-      <MyPageStack.Screen name="Scrap" component={ScrapStack} />
-      <MyPageStack.Screen
-        name="ChangeUserInfo"
-        component={ChangeUserInfoStack}
-      />
-    </Stack.Navigator>
-  );
-};
-const ScrapStack = ({Navigation}) => {
-  return (
-    <Stack.Navigator>
-      <ScrapStack.Screen name="ScrapList" component={PolicyDetailScreen} />
-      <ScrapStack.Screen name="ScrapDetail" component={PolicyDetailScreen} />
-    </Stack.Navigator>
-  ); //여기 리스트는 스크랩 해놓은거만
-};
-const ChangeUserInfoStack = ({Navigation}) => {
-  return (
-    <Stack.Navigator>
-      <ChangeUserInfoStack.Screen
-        name="changeUserInfoSignup"
-        component={SignupScreen}
-      />
-      <ChangeUserInfoStack.Screen
-        name="changeUserInfoSignup"
-        component={favoriteScreen}
-      />
-    </Stack.Navigator>
-  ); //여기 유저정보변경은 기존에서 바꾸는 회원가입창
-};
 
 export default function App() {
   const React$Node = () => {
     return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Signup" component={SignupScreen} />
-          <Stack.Screen name="favorite" component={favoriteScreen} />
-          <Stack.Screen name="Title" component={TitleStack} />
-        </Stack.Navigator>
-      </NavigationContainer>
+        <NavigationContainer>
+          <KeyProvider>
+            <Stack.Navigator initialRouteName="Login">
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="Signup" component={SignupScreen} />
+              <Stack.Screen name="Favorite" component={FavoriteSelectScreen} />
+              <Stack.Screen name="Title" component={TitleStack} />
+            </Stack.Navigator>
+          </KeyProvider>
+        </NavigationContainer>
     );
   };
   return React$Node();
 }
-
-const styles = StyleSheet.create({});

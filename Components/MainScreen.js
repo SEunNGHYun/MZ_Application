@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,11 +9,13 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {getRequest, access_token} from './config';
+import { keyContext }from './KeyStore'
+import { getRequest } from './config.js'
 import NewsComponent from './NewsComponent';
 import PlaceComponent from './PlaceComponent';
 
 export default function MainScreen({navigation}) {
+  const [access_token] = useContext(keyContext)
   const [viewNewsList, setViewNewsList] = useState([]); //뉴스 대아터를 저장할 공간 선언
   const [newsIndex, setNewsIndex] = useState(0);
   const [placeList, setPlaceList] = useState([]);
@@ -61,7 +63,7 @@ export default function MainScreen({navigation}) {
           style={{
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: 20,
+            marginVertical: 12,
           }}>
           <View style={styles.newsIndex}>
             <TouchableOpacity

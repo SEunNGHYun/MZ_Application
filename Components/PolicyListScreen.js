@@ -1,6 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import {policyTestData} from '../testData';
-import PolicyComponet from './PolicyListCompoent';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   View,
   Text,
@@ -9,17 +7,31 @@ import {
   FlatList,
   Platform,
 } from 'react-native';
+import PolicyComponet from './PolicyListCompoent';
+import {keyContext} from './KeyStore'
+import {getRequest} from './config'
 
 export default function PolicyListScreen({navigation}) {
+  const [access_token] = useContext(keyContext)
   const [policyData, setPolicyData] = useState([]);
+  const [pageIndex, setPageIndex] = useState(1)
+
+  async function getPolicyData() {
+    const response = await getRequest(`/policy?pageIndex=${pageIndex}`, access_token)
+
+    if(response.status == 200){
+      const newPolicyData = policyData.concat(response["data"]['empsInfo']['emp'])
+      setPolicyData(newPolicyData);
+    }
+  }
+
+  function scrollEndReached () {
+    setPageIndex(pageIndex + 1)
+  }
 
   useEffect(() => {
     getPolicyData();
-  }, []);
-
-  function getPolicyData() {
-    setPolicyData(policyTestData['data']['empsInfo']['emp']);
-  }
+  }, [pageIndex]);
 
   return (
     <SafeAreaView style={styles.view}>
@@ -27,7 +39,8 @@ export default function PolicyListScreen({navigation}) {
         <FlatList
           keyExtractor={item => item['bizId']['_text']}
           data={policyData}
-          renderItem={PolicyComponet}
+          onEndReached={scrollEndReached}
+          renderItem={({item}) => <PolicyComponet item={item} navigation={navigation}/> }
         />
       ) : (
         <View style={styles.notFound}>

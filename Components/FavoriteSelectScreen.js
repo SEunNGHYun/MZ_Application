@@ -13,10 +13,10 @@ import {
   Alert,
 } from 'react-native';
 
-import FavoriteBox from './favoriteBox';
+import FavoriteBox from './FavoriteBox';
 import {getRequest} from './config';
 
-const FavoriteSelectScreen = () => {
+const FavoriteSelectScreen = ({navigation}) => {
   const [favoriteList, setFavoriteList] = useState([]);
   const [selectFav, setSelectFav] = useState([]);
 

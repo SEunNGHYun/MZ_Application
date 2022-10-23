@@ -5,9 +5,9 @@ import {
 } from 'react-native-responsive-screen';
 import { View, Text , StyleSheet, TouchableOpacity } from 'react-native'
 
-export default function PolicyListCompoent({item}) {
+export default function PolicyListCompoent({item, navigation}) {
   return (
-    <TouchableOpacity style={styles.component} onPress={() => console.log("정책 터치")}>
+    <TouchableOpacity style={styles.component} onPress={() => navigation.navigate("Detail", {item})}>
       <View style={styles.header}>
         <Text numberOfLines={1} ellipsizeMode={"tail"} style={styles.headerFont}>{item["polyBizSjnm"]["_cdata"]}</Text>
       </View>

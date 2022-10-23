@@ -1,13 +1,37 @@
-import React , {useState} from 'react'
-import {policyTestData} from '../testData'
-import { SafeAreaView, View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
+import React , {useState, useContext} from 'react'
+import { SafeAreaView, View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert} from 'react-native'
+import {keyContext} from './KeyStore'
+import { postRequest } from './config'
 
-export default function PolicyDetailScreen() {
+export default function PolicyDetailScreen({route}) {
+  const [access_token] = useContext(keyContext)
   const [toggleScrab, setToggleScrab] = useState(false)
-  const data = policyTestData["data"]["empsInfo"]["emp"][2]
+  const data = route.params.item
+
   
-  function pressScrabButton () {
-    setToggleScrab(!toggleScrab)
+  async function pressScrabButton () {
+    const save_data = {
+      "policy_id" : data["bizId"]["_text"],
+      "policy_name" :data["polyBizSjnm"]["_cdata"],
+      "policy_introduce" :data["polyItcnCn"]["_cdata"],
+      "policy_scale" :data["sporScvl"]["_cdata"],
+      "policy_date" : data["rqutPrdCn"]["_cdata"],
+      "policy_enable_age" :data["ageInfo"]["_cdata"], 
+      "policy_enable_status" :data["empmSttsCn"]["_cdata"],
+      "policy_enable_edu" :data["accrRqisCn"]["_cdata"],
+      "policy_enable_majr" :data["majrRqisCn"]["_cdata"],
+      "policy_enable_spil" :data["splzRlmRqisCn"]["_cdata"], 
+      "policy_sub_way" :data["rqutProcCn"]["_cdata"],
+      "policy_sub_place" :data["cnsgNmor"]["_cdata"], 
+      "policy_result_date" :data["jdgnPresCn"]["_cdata"], 
+    }
+    const response = await postRequest('/scrab', save_data, access_token)
+
+    if (response.status == 201) {
+      console.log("스크랩 되어있음")
+    }else if (response.status == 202) {
+      console.log("스크랩 ㄴㄴ")
+    }
   }
   
   return (
@@ -17,7 +41,7 @@ export default function PolicyDetailScreen() {
           <Text style={styles.title} >{data["polyBizSjnm"]["_cdata"]}</Text>
         </View>
         <TouchableOpacity onPress={pressScrabButton}>
-          {toggleScrab ? <View style={styles.scrabTrue}/> : <View style={styles.scrabFalse} />}
+          <View><Text>스트랩</Text></View>
         </TouchableOpacity>
       </View>
       <ScrollView>

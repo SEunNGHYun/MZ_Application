@@ -10,8 +10,6 @@ import {
   SafeAreaView,
   TouchableOpacity,
   TextInput,
-  Platform,
-  Alert,
 } from 'react-native';
 
 const SignupScreen = ({navigation}) => {
@@ -60,7 +58,7 @@ const SignupScreen = ({navigation}) => {
             </View>
             <TouchableOpacity
               style={styles.btn}
-              onPress={() => navigation.navigate('favorite')}>
+              onPress={() => navigation.navigate('Favorite')}>
               <Text style={{color: 'white'}}>다음</Text>
             </TouchableOpacity>
           </View>
