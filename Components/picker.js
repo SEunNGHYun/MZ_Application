@@ -27,6 +27,16 @@ class PickerComponent extends Component {
           <Picker.Item label="28" value={28} />
           <Picker.Item label="29" value={29} />
           <Picker.Item label="30" value={30} />
+          <Picker.Item label="31" value={31} />
+          <Picker.Item label="32" value={32} />
+          <Picker.Item label="33" value={33} />
+          <Picker.Item label="34" value={34} />
+          <Picker.Item label="35" value={35} />
+          <Picker.Item label="36" value={36} />
+          <Picker.Item label="37" value={37} />
+          <Picker.Item label="38" value={38} />
+          <Picker.Item label="39" value={39} />
+          <Picker.Item label="40" value={40} />
         </Picker>
       </View>
     );
