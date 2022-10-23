@@ -1,7 +1,7 @@
 import React , {useState, useContext} from 'react'
 import { SafeAreaView, View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert} from 'react-native'
-import {keyContext} from './KeyStore'
-import { postRequest } from './config'
+import {keyContext} from '../KeyStore'
+import { postRequest } from '../config'
 
 export default function PolicyDetailScreen({route}) {
   const [access_token] = useContext(keyContext)

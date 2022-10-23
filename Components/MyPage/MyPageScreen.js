@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import UserInfoBox from './UserInfoBoxComponet';
-import { keyContext }from './KeyStore'
-import { getRequest, deleteRequest }from './config'
+import { keyContext }from '../KeyStore'
+import { getRequest, deleteRequest }from '../config'
 
 
 export default function MyPageScreen({navigation}) {
@@ -49,7 +49,7 @@ export default function MyPageScreen({navigation}) {
             <Text style={styles.font}>스크랩</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => console.log('회원 정보 변경')}
+            onPress={() => navigation.navigate("ChangeUserInfo")}
             style={styles.btn}>
             <Text style={styles.font}>회원 정보 변경</Text>
           </TouchableOpacity>

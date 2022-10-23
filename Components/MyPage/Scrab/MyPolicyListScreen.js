@@ -7,11 +7,11 @@ import {
   FlatList,
   Platform,
 } from 'react-native';
-import PolicyComponet from './PolicyListCompoent';
-import {keyContext} from './KeyStore'
-import {getRequest} from './config'
+import PolicyComponet from './MyPolicyListCompoent';
+import {keyContext} from '../../KeyStore'
+import {getRequest} from '../../config'
 
-export default function PolicyListScreen({navigation}) {
+export default function MyPolicyListScreen({navigation}) {
   const [access_token] = useContext(keyContext)
   const [policyData, setPolicyData] = useState([]);
   const [pageIndex, setPageIndex] = useState(1)
@@ -54,6 +54,7 @@ export default function PolicyListScreen({navigation}) {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
+    backgroundColor : "white",
     paddingHorizontal: 10,
     marginHorizontal: Platform.OS == 'ios' ? 10 : 0,
   },

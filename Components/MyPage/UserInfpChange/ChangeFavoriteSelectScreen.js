@@ -14,9 +14,9 @@ import {
 } from 'react-native';
 
 import FavoriteBox from './FavoriteBox';
-import {getRequest} from './config';
+import {getRequest} from '../../config';
 
-const FavoriteSelectScreen = ({navigation}) => {
+const ChangeFavoriteSelectScreen = ({navigation}) => {
   const [favoriteList, setFavoriteList] = useState([]);
   const [selectFav, setSelectFav] = useState([]);
 
@@ -61,6 +61,7 @@ const FavoriteSelectScreen = ({navigation}) => {
 
       if (response.status == 201) {
       } else {
+        
       }
     }
   };
@@ -138,4 +139,4 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-export default FavoriteSelectScreen;
+export default ChangeFavoriteSelectScreen;

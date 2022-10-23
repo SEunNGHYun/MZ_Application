@@ -9,8 +9,8 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { keyContext }from './KeyStore'
-import { getRequest } from './config.js'
+import { keyContext }from '../KeyStore'
+import { getRequest } from '../config.js'
 import NewsComponent from './NewsComponent';
 import PlaceComponent from './PlaceComponent';
 
@@ -128,6 +128,7 @@ export default function MainScreen({navigation}) {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
+    backgroundColor : "white",
     paddingVertical: 10,
   },
   headerTitle: {

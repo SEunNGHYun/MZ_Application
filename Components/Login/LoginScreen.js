@@ -11,8 +11,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import { keyContext }from './KeyStore'
-import { postRequest }from './config'
+import { keyContext }from '../KeyStore'
+import { postRequest }from '../config'
 
 const App = ({navigation}) => {
   const [_ , setKeyStore] = useContext(keyContext)
