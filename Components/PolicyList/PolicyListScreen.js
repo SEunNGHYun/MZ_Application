@@ -34,19 +34,21 @@ export default function PolicyListScreen({navigation}) {
   }, [pageIndex]);
 
   return (
-    <SafeAreaView style={styles.view}>
-      {policyData.length > 0 ? (
-        <FlatList
-          keyExtractor={item => item['bizId']['_text']}
-          data={policyData}
-          onEndReached={scrollEndReached}
-          renderItem={({item}) => <PolicyComponet item={item} navigation={navigation}/> }
-        />
-      ) : (
-        <View style={styles.notFound}>
-          <Text>정보가 없습니다.</Text>
-        </View>
-      )}
+    <SafeAreaView style={{flex: 1, backgroundColor : 'white'}}>
+      <View style={styles.view}>
+        {policyData.length > 0 ? (
+          <FlatList
+            keyExtractor={item => item['bizId']['_text']}
+            data={policyData}
+            onEndReached={scrollEndReached}
+            renderItem={({item}) => <PolicyComponet item={item} navigation={navigation}/> }
+          />
+        ) : (
+          <View style={styles.notFound}>
+            <Text>정보가 없습니다.</Text>
+          </View>
+        )}
+      </View>
     </SafeAreaView>
   );
 }

@@ -6,16 +6,18 @@ import {
 import { View, Text , StyleSheet, TouchableOpacity } from 'react-native'
 
 export default function MyPolicyListCompoent({item, navigation}) {
+  
   return (
-    <TouchableOpacity style={styles.component} onPress={() => navigation.navigate("Detail", {item})}>
-      <View style={styles.header}>
-        <Text numberOfLines={1} ellipsizeMode={"tail"} style={styles.headerFont}>{item["polyBizSjnm"]["_cdata"]}</Text>
+    <TouchableOpacity style={styles.component} onPress={() => navigation.navigate("MyScrapDetail", {item})}>
+    {console.log(item)}   
+    <View style={styles.header}>
+        <Text numberOfLines={1} ellipsizeMode={"tail"} style={styles.headerFont}>{item["policy_name"]}</Text>
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.bottomFont}>{item["plcyTpNm"]["_cdata"]}</Text>
+        <Text style={styles.bottomFont}>{item["policy_support"]}</Text>
         <View style={{width : "40%"}}> 
           <Text numberOfLines={1} ellipsizeMode={"tail"} style={styles.bottomFont}>
-            기간 : {item["rqutPrdCn"]["_cdata"]}
+            기간 : {item["policy_date"]}
           </Text>
         </View>
       </View>

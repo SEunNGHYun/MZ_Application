@@ -7,8 +7,8 @@ import {
   FlatList,
   ScrollView,
   Image,
-  TouchableOpacity,
 } from 'react-native';
+import NewSelect from './NewsSelect'
 import { keyContext }from '../KeyStore'
 import { getRequest } from '../config.js'
 import NewsComponent from './NewsComponent';
@@ -59,42 +59,7 @@ export default function MainScreen({navigation}) {
             numColumns={2}
           />
         )}
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginVertical: 12,
-          }}>
-          <View style={styles.newsIndex}>
-            <TouchableOpacity
-              style={[
-                styles.newsIndexChangeCircle,
-                {
-                  backgroundColor: newsIndex == 0 ? 'gray' : 'white',
-                },
-              ]}
-              onPress={() => changeViewNewsData(0)}
-            />
-            <TouchableOpacity
-              style={[
-                styles.newsIndexChangeCircle,
-                {
-                  backgroundColor: newsIndex == 1 ? 'gray' : 'white',
-                },
-              ]}
-              onPress={() => changeViewNewsData(1)}
-            />
-            <TouchableOpacity
-              style={[
-                styles.newsIndexChangeCircle,
-                {
-                  backgroundColor: newsIndex == 2 ? 'gray' : 'white',
-                },
-              ]}
-              onPress={() => changeViewNewsData(2)}
-            />
-          </View>
-        </View>
+        <NewSelect changeViewNewsData={changeViewNewsData} newsIndex={newsIndex}/>
       </View>
       <View style={styles.spaceForm}>
         {placeList.length > 0 && (
@@ -167,16 +132,5 @@ const styles = StyleSheet.create({
     width: '45%',
     height: '100%',
   },
-  newsIndex: {
-    width: 50,
-    height: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  newsIndexChangeCircle: {
-    width: 10,
-    height: 10,
-    borderWidth: 1,
-    borderRadius: 10,
-  },
+ 
 });

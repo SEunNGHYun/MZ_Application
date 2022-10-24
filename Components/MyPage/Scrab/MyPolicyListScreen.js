@@ -8,38 +8,16 @@ import {
   Platform,
 } from 'react-native';
 import PolicyComponet from './MyPolicyListCompoent';
-import {keyContext} from '../../KeyStore'
-import {getRequest} from '../../config'
 
-export default function MyPolicyListScreen({navigation}) {
-  const [access_token] = useContext(keyContext)
-  const [policyData, setPolicyData] = useState([]);
-  const [pageIndex, setPageIndex] = useState(1)
-
-  async function getPolicyData() {
-    const response = await getRequest(`/policy?pageIndex=${pageIndex}`, access_token)
-
-    if(response.status == 200){
-      const newPolicyData = policyData.concat(response["data"]['empsInfo']['emp'])
-      setPolicyData(newPolicyData);
-    }
-  }
-
-  function scrollEndReached () {
-    setPageIndex(pageIndex + 1)
-  }
-
-  useEffect(() => {
-    getPolicyData();
-  }, [pageIndex]);
+export default function MyPolicyListScreen({navigation, route}) {
+  const [policyData] = useState(route.params["scrab"]);
 
   return (
     <SafeAreaView style={styles.view}>
       {policyData.length > 0 ? (
         <FlatList
-          keyExtractor={item => item['bizId']['_text']}
+          keyExtractor={item => item["policy_ids"]}
           data={policyData}
-          onEndReached={scrollEndReached}
           renderItem={({item}) => <PolicyComponet item={item} navigation={navigation}/> }
         />
       ) : (
