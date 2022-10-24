@@ -9,16 +9,18 @@ import {
   Image,
 } from 'react-native';
 import NewSelect from './NewsSelect'
-import { keyContext }from '../KeyStore'
-import { getRequest } from '../config.js'
 import NewsComponent from './NewsComponent';
 import PlaceComponent from './PlaceComponent';
+import { keyContext }from '../KeyStore'
+import { getRequest } from '../config.js'
+import { space, news } from '../../assets/imgs'
 
 export default function MainScreen({navigation}) {
   const [access_token] = useContext(keyContext)
   const [viewNewsList, setViewNewsList] = useState([]); //뉴스 대아터를 저장할 공간 선언
   const [newsIndex, setNewsIndex] = useState(0);
   const [placeList, setPlaceList] = useState([]);
+  const [newsrandomImgList, setNewsrandomImgList] = useState([])
   //데이터 불러오는 함수
   async function getData() {
     const response = await getRequest('/main', access_token);
@@ -36,11 +38,25 @@ export default function MainScreen({navigation}) {
     }
   }
 
+  function randomImageChoice () {
+    let randomImgarr = []
+    function randomChoice (){
+      var index = Math.floor(Math.random() * 4);
+      return news[index];
+    }
+
+    for(var i = 0; i < 4; i ++){
+      randomImgarr.push(randomChoice())
+    }
+    setNewsrandomImgList(randomImgarr)
+  }
+
   function changeViewNewsData(index) {
     setNewsIndex(index);
   }
 
   useEffect(() => {
+    randomImageChoice()
     getData();
   }, []); //데이터를 불러오는 함수를 실행(맨 처음에)
 
@@ -54,23 +70,34 @@ export default function MainScreen({navigation}) {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.newsForm}
             data={viewNewsList[newsIndex]}
-            renderItem={NewsComponent}
+            renderItem={({item, index}) => <NewsComponent 
+            item={item} 
+            index={index}
+            navigation={navigation}
+            rdmImgs={newsrandomImgList} /> 
+          }
             keyExtractor={item => item.title}
             numColumns={2}
           />
         )}
-        <NewSelect changeViewNewsData={changeViewNewsData} newsIndex={newsIndex}/>
+        <NewSelect changeViewNewsData={changeViewNewsData} newsIndex={newsIndex} randomImageChoice={randomImageChoice}/>
       </View>
       <View style={styles.spaceForm}>
         {placeList.length > 0 && (
           <View style={styles.spaceBox}>
-            <Text style={[styles.headerTitle, {marginBottom: 10}]}>
-              청년 공간
-            </Text>
+            <View style={{flexDirection : 'row', alignItems : "center"}}>
+              <Text style={[styles.headerTitle, {marginBottom: 10}]}>
+                청년 공간    
+              </Text>
+              <Text>
+                {"     "}[{placeList[0]["areaSggn"]["_cdata"]}]
+              </Text>
+            </View>
             <View style={{flexDirection: 'row', height: '75%'}}>
               <Image
                 style={styles.spaceImage}
-                source={{uri: 'https://placehold.jp/006699/cccc00/150x100.jpg'}}
+                resizeMode="contain"
+                source={{uri: space }}
               />
               <ScrollView
                 showsHorizontalScrollIndicator={false}
@@ -103,16 +130,16 @@ const styles = StyleSheet.create({
   },
   todayNews: {
     width: '100%',
-    height: '50%',
+    height: '57%',
   },
   newsForm: {
-    flexGrow: 1,
+    height : "100%",
     justifyContent: 'center',
     alignItems: 'center',
   },
   spaceForm: {
     width: '100%',
-    height: '50%',
+    height: '48%',
     paddingTop: 30,
     alignItems: 'center',
   },
@@ -125,12 +152,11 @@ const styles = StyleSheet.create({
   },
   spaceImage: {
     width: '45%',
-    height: '100%',
+    height: '90%',
     marginRight: 7,
   },
   spaceDatas: {
     width: '45%',
     height: '100%',
-  },
- 
+  }
 });

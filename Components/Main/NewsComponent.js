@@ -1,19 +1,35 @@
-import React from 'react'
-import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React, {useCallback} from 'react'
+import { View, Image, StyleSheet, Text, TouchableOpacity , Linking} from 'react-native';
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { news } from '../../assets/imgs'
 
-export default function NewsComponent({item}) {
+export default function NewsComponent({item, index, rdmImgs, navigation}) {
+  const title = item.title.replace("&apos;", '').replace("&quot;", '').replace("<b>", '').replace("</b>", "")
+  
+  const handlePress = useCallback(async () => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(item.link);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(item.link);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${item.link}`);
+    }
+  }, [item]);
+
+
   return (
-    <TouchableOpacity style={styles.newsForm} onPress={() =>console.log("?")}>
+    <TouchableOpacity style={styles.newsForm} onPress={handlePress}>
         <Image
           style={styles.newsImage} 
-          resizeMode="cover"
-          source={{uri: "https://placehold.jp/006699/cccc00/150x100.jpg"}} />
+          resizeMode="stretch"
+          source={{uri: rdmImgs[index] }} />
           <View style={styles.newsTextForm}>
-            <Text style={styles.newsTitle} numberOfLines={1} ellipsizeMode={'tail'}>{item.title}</Text>
+            <Text style={styles.newsTitle} numberOfLines={1} ellipsizeMode={'tail'}>{title}</Text>
             <Text style={styles.newsExplan} numberOfLines={2} ellipsizeMode={'tail'}>{item.description}</Text>
           </View>
     </TouchableOpacity>

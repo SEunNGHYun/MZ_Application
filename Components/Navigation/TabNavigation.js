@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import MainScreen from '../Main/MainScreen'
+import NewsDetailScreen from '../Main/NewsDetail'
 
 import PolicyListScreen from '../PolicyList/PolicyListScreen'
 import PolicyDetailScreen from '../PolicyList/PolicyDetailScreen'
@@ -18,6 +19,15 @@ import MyPageScreen from '../MyPage/MyPageScreen'
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+const MainStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Main" component={MainScreen} />
+      <Stack.Screen name="NewsDetail"  component={NewsDetailScreen} />
+    </Stack.Navigator>
+  );
+};
 
 const PolicyListStack = () => {
   return (
@@ -77,7 +87,7 @@ export default function  TitleStack ()  {
       }}>
       <Tab.Screen
         name="Main"
-        component={MainScreen}
+        component={MainStack}
         options={{ headerShown: false }}
       />
       <Tab.Screen

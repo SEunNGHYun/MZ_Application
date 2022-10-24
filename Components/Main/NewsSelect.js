@@ -1,7 +1,12 @@
 import React from 'react'
 import { View, StyleSheet , TouchableOpacity} from 'react-native'
 
-export default function NewsSelect({changeViewNewsData, newsIndex}) {
+export default function NewsSelect({changeViewNewsData, newsIndex, randomImageChoice}) {
+  const pressOption = (index) => {
+    changeViewNewsData(index)
+    randomImageChoice()
+  }
+  
   return (
     <View style={styles.butForm}>
           <View style={styles.newsIndex}>
@@ -12,7 +17,7 @@ export default function NewsSelect({changeViewNewsData, newsIndex}) {
                   backgroundColor: newsIndex == 0 ? 'gray' : 'white',
                 },
               ]}
-              onPress={() => changeViewNewsData(0)}
+              onPress={() => pressOption(0)}
             />
             <TouchableOpacity
               style={[
@@ -21,7 +26,7 @@ export default function NewsSelect({changeViewNewsData, newsIndex}) {
                   backgroundColor: newsIndex == 1 ? 'gray' : 'white',
                 },
               ]}
-              onPress={() => changeViewNewsData(1)}
+              onPress={() => pressOption(1)}
             />
             <TouchableOpacity
               style={[
@@ -30,7 +35,7 @@ export default function NewsSelect({changeViewNewsData, newsIndex}) {
                   backgroundColor: newsIndex == 2 ? 'gray' : 'white',
                 },
               ]}
-              onPress={() => changeViewNewsData(2)}
+              onPress={() => pressOption(2)}
             />
           </View>
         </View>
