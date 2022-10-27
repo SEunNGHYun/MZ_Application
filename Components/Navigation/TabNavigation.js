@@ -40,9 +40,9 @@ const PolicyListStack = () => {
 
 const ScrapStack = () => {
   return (
-    <Stack.Navigator initialRouteName="MyScrapList">
-      <Stack.Screen name="MyScrapList" component={MyPageScrb} />
-      <Stack.Screen name="MyScrapDetail"  component={MyPageScrbDetail} />
+    <Stack.Navigator initialRouteName="MyScrapList" >
+      <Stack.Screen name="MyScrapList" options={{ headerShown: false }}   component={MyPageScrb} />
+      <Stack.Screen name="MyScrapDetail" options={{ headerShown: false }}   component={MyPageScrbDetail} />
     </Stack.Navigator>
   ); //여기 리스트는 스크랩 해놓은거만
 };
@@ -52,10 +52,12 @@ const ChangeUserInfoStack = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="ChangeUserInfo"
+        options={{ headerShown: false }}
         component={MyPageInfoChange}
       />
       <Stack.Screen
         name="ChangeUserFav"
+        options={{ headerShown: false }}
         component={MyPageFavChange}
       />
     </Stack.Navigator>
@@ -65,8 +67,10 @@ const ChangeUserInfoStack = () => {
 const MyPageStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Myinfo" component={MyPageScreen} />
-      <Stack.Screen name="Scrab" options={{ headerShown: false }} component={ScrapStack} />
+      <Stack.Screen name="Myinfo"
+      options={{ headerShown: false }} 
+      component={MyPageScreen} />
+      <Stack.Screen name="Scrab" component={ScrapStack} />
       <Stack.Screen
         name="ChangeUserInfo"
         options={{ headerShown: false }}

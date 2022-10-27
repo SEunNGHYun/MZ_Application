@@ -18,7 +18,7 @@ export default function FavoriteBox({item, pressFavorite, selectFav}) {
       onPress={() => pressFavorite(item.interest_code)}>
         <Image 
           style={styles.favImag}
-          resizeMode="contain"
+          resizeMode="cover"
           source={{uri: item.interest_img}} />
         <View style={styles.favField}>
           <Text>{item.interest_field}</Text>
@@ -32,11 +32,10 @@ const styles = StyleSheet.create({
     borderWidth : 2,
     width : "47%",
     height : 160,
-    paddingTop : 5
   },
   favImag : {
     width : '100%',
-    height : 100,
+    height : 105,
   },
   favField : {
     height : 55,

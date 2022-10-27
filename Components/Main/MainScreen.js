@@ -25,7 +25,6 @@ export default function MainScreen({navigation}) {
   async function getData() {
     const response = await getRequest('/main', access_token);
     //대충 데이터 가져오는 코드
-
     if (response.status == 200) {
       const newsData = response['news_data']['items'];
       const sliceNewData = [
@@ -34,7 +33,9 @@ export default function MainScreen({navigation}) {
         newsData.slice(8, 12),
       ];
       setViewNewsList(sliceNewData);
-      setPlaceList(response['place_data']['spacesInfo']['space']);
+      if (response['place_data']['spacesInfo']["totalCnt"]["_text"] !== '0'){
+        setPlaceList(response['place_data']['spacesInfo']['space']);
+      }
     }
   }
 
@@ -83,15 +84,16 @@ export default function MainScreen({navigation}) {
         <NewSelect changeViewNewsData={changeViewNewsData} newsIndex={newsIndex} randomImageChoice={randomImageChoice}/>
       </View>
       <View style={styles.spaceForm}>
-        {placeList.length > 0 && (
           <View style={styles.spaceBox}>
             <View style={{flexDirection : 'row', alignItems : "center"}}>
               <Text style={[styles.headerTitle, {marginBottom: 10}]}>
                 청년 공간    
               </Text>
-              <Text>
-                {"     "}[{placeList[0]["areaSggn"]["_cdata"]}]
-              </Text>
+              {placeList.length > 0 && (
+                <Text>
+                  {"     "}[{placeList[0]["areaSggn"]["_cdata"]}]
+                </Text>
+              )}
             </View>
             <View style={{flexDirection: 'row', height: '75%'}}>
               <Image
@@ -99,6 +101,7 @@ export default function MainScreen({navigation}) {
                 resizeMode="contain"
                 source={{uri: space }}
               />
+              {placeList.length > 0 ? (
               <ScrollView
                 showsHorizontalScrollIndicator={false}
                 style={styles.spaceDatas}>
@@ -108,10 +111,15 @@ export default function MainScreen({navigation}) {
                     placeData={place}
                   />
                 ))}
-              </ScrollView>
+              </ScrollView> ) 
+              : (
+                <Text>
+                  제공되는 장소가 없습니다.
+                </Text>
+              )}
             </View>
           </View>
-        )}
+        
       </View>
     </SafeAreaView>
   );

@@ -7,9 +7,12 @@ import {
   StyleSheet,
   View,
   Text,
+  TouchableWithoutFeedback,
+  Keyboard,
   SafeAreaView,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
 import { keyContext }from '../KeyStore'
 import { postRequest }from '../config'
@@ -28,10 +31,19 @@ const App = ({navigation}) => {
         if (response.status == 201) {
           //로그인 성공 access token 저장 
           setKeyStore(response.access_token)
-          navigation.navigate("Title")
+          navigation.replace('Title')
           //화면 이동
         }else if (response.status == 202) {
           //에러는 없지만 존재하지 않는 회원일 때
+          Alert.alert(
+            '존재하지 않는 회원입니다.',
+            '회원가입해주세요'
+          ,[
+            {
+              title : '네',
+              onPress: () => console.log('(* ^ *)')
+            }
+          ])
         }
       
       }catch(err) {
@@ -39,6 +51,15 @@ const App = ({navigation}) => {
       }
     }else{
       //비번 다시 치도록 경고창
+      Alert.alert(
+        '다시 입력해주세요',
+        ''
+      ,[
+        {
+          title : '네',
+          onPress: () => console.log('(* ^ *)')
+        }
+      ])
     }
   }
 
@@ -48,48 +69,50 @@ const App = ({navigation}) => {
 
   const React$Node = () => {
     return (
-      <SafeAreaView style={{flex : 1}} >
-        <View style={styles.container}>
-          <View style={styles.topArea}>
-            <Text style={styles.helloText}>환영합니다.</Text>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={{flex: 1}}>
+          <View style={styles.container}>
+            <View style={styles.topArea}>
+              <Text style={styles.helloText}>환영합니다.</Text>
+            </View>
+            <View style={styles.formArea}>
+              <Text style={styles.Text}>ID</Text>
+              <TextInput 
+              style={styles.textForm} 
+              onChangeText={setId}//입력이 들어올때마 id 변수에 저장돰
+              value={id}
+              placeholder={'아이디'} />
+
+              <Text style={styles.Text}>PASSWORD</Text>
+              <TextInput 
+              style={styles.textForm}
+              onChangeText={setPassword}//입력이 들어올때마 password 변수에 저장돰
+              secureTextEntry={true}//입력된 값을 안보이게 해줌
+              value={password} 
+              placeholder={'비밀번호'} />
+
+              <TouchableOpacity
+                style={styles.btn}
+                onPress={login}>
+                <Text style={(styles.Text, {color: 'white'})}>로그인</Text>
+              </TouchableOpacity>
+            </View>
+            
+            <View style={styles.btnArea2}>
+              <TouchableOpacity style={styles.grayBtn} onPress={move}>
+                <Text style={(styles.Text, {color: '#9b9b9b'})}>회원가입</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity disabled={true} style={styles.grayBtn} onPress={move}>
+                <Text style={(styles.Text, {color: '#9b9b9b'})}>
+                  비밀번호를 잊으셨나요?
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.formArea}>
-            <Text style={styles.Text}>ID</Text>
-            <TextInput 
-            style={styles.textForm} 
-            onChangeText={setId}//입력이 들어올때마 id 변수에 저장돰
-            value={id}
-            placeholder={'아이디'} />
-
-            <Text style={styles.Text}>PASSWORD</Text>
-            <TextInput 
-            style={styles.textForm}
-            onChangeText={setPassword}//입력이 들어올때마 password 변수에 저장돰
-            secureTextEntry={true}//입력된 값을 안보이게 해줌
-            value={password} 
-            placeholder={'비밀번호'} />
-
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={login}>
-              <Text style={(styles.Text, {color: 'white'})}>로그인</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.btnArea2}>
-            <TouchableOpacity style={styles.grayBtn} onPress={move}>
-              <Text style={(styles.Text, {color: '#9b9b9b'})}>회원가입</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.grayBtn} onPress={move}>
-              <Text style={(styles.Text, {color: '#9b9b9b'})}>
-                비밀번호를 잊으셨나요?
-              </Text>
-            </TouchableOpacity>
-
-          </View>
-        </View>
-      </SafeAreaView> //컨테이너 View
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
+       //컨테이너 View
     );
   };
   return React$Node();
@@ -103,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 3,
+    height: hp(20),
     justifyContent: 'center',
   },
   helloText: {
@@ -114,7 +137,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   formArea: {
-    flex: 4,
+    height : hp(35),
+    justifyContent: 'center'
   },
   textForm: {
     borderWidth: 2,
@@ -136,7 +160,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#0D47A1',
   },
   btnArea2: {
-    flex: 4,
     alignItems : "flex-end",
     justifyContent: 'flex-start',
   },

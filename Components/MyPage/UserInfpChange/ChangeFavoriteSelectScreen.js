@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -12,11 +12,14 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
-
+import Header from '../../Header'
 import FavoriteBox from './FavoriteBox';
-import {getRequest} from '../../config';
+import { keyContext }from '../../KeyStore'
+import {patchRequest, getRequest} from '../../config';
 
-const ChangeFavoriteSelectScreen = ({navigation}) => {
+const ChangeFavoriteScreen = ({navigation, route}) => {
+  const data = route.params
+  const [access_token] = useContext(keyContext)
   const [favoriteList, setFavoriteList] = useState([]);
   const [selectFav, setSelectFav] = useState([]);
 
@@ -46,20 +49,32 @@ const ChangeFavoriteSelectScreen = ({navigation}) => {
   };
 
   const completeSignup = async () => {
-    if (selectFav.length > 0) {
-      Alert.alert('하나 이상 선택해주세요');
+    console.log(selectFav)
+    if (selectFav.length == 0) {
+      Alert.alert(
+        '하나 이상 선택해주세요', 
+        '다시 선택해주세요'
+      );
     } else {
       const signupData = {
-        user_id: null,
-        user_password: null,
-        user_age: null,
-        user_state: null,
-        user_city: null,
+        user_password: data.password,
+        user_age: data.age,
+        user_state: data.state,
+        user_city: data.city,
         interest_ids: selectFav,
       };
-      const response = await ostRequest('/user/signup', signupData);
+      const response = await patchRequest('/user/config', signupData, access_token);
 
-      if (response.status == 201) {
+      if (response.status == 200) {
+        Alert.alert(
+          '수정되었습니다.',
+          ''
+        ,[
+          {
+            title : 'ok',
+            onPress: () => navigation.replace('Myinfo')
+          }
+        ])
       } else {
         
       }
@@ -73,6 +88,7 @@ const ChangeFavoriteSelectScreen = ({navigation}) => {
   const React$Node = () => {
     return (
       <SafeAreaView style={styles.container}>
+        <Header title={"관심분야설정"}/>
         <View style={styles.topArea}>
           <Text style={styles.helloText}>관심분야 선택 (중복)</Text>
         </View>
@@ -96,8 +112,8 @@ const ChangeFavoriteSelectScreen = ({navigation}) => {
         <View style={styles.btnArea2}>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => navigation.popToTop('Login')}>
-            <Text style={(styles.Text, {color: 'white'})}>회원가입</Text>
+            onPress={completeSignup}>
+            <Text style={(styles.Text, {color: 'white'})}>회원수정</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -139,4 +155,4 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-export default ChangeFavoriteSelectScreen;
+export default ChangeFavoriteScreen;

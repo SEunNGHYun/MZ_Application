@@ -14,9 +14,10 @@ import {
 } from 'react-native';
 
 import FavoriteBox from './FavoriteBox';
-import {getRequest} from '../config';
+import {postRequest, getRequest} from '../config';
 
-const FavoriteSelectScreen = ({navigation}) => {
+const FavoriteSelectScreen = ({navigation, route}) => {
+  const data = route.params
   const [favoriteList, setFavoriteList] = useState([]);
   const [selectFav, setSelectFav] = useState([]);
 
@@ -46,20 +47,33 @@ const FavoriteSelectScreen = ({navigation}) => {
   };
 
   const completeSignup = async () => {
-    if (selectFav.length > 0) {
-      Alert.alert('하나 이상 선택해주세요');
+    console.log(selectFav)
+    if (selectFav.length == 0) {
+      Alert.alert(
+        '하나 이상 선택해주세요', 
+        '다시 선택해주세요'
+      );
     } else {
       const signupData = {
-        user_id: null,
-        user_password: null,
-        user_age: null,
-        user_state: null,
-        user_city: null,
+        user_id: data.id,
+        user_password: data.password,
+        user_age: data.age,
+        user_state: data.state,
+        user_city: data.city,
         interest_ids: selectFav,
       };
-      const response = await ostRequest('/user/signup', signupData);
+      const response = await postRequest('/user/signup', signupData);
 
       if (response.status == 201) {
+        Alert.alert(
+          '회원가입되었습니다.',
+          '환영합니다!'
+        ,[
+          {
+            title : '빈가워요',
+            onPress: () => navigation.popToTop('Login')
+          }
+        ])
       } else {
         
       }
@@ -96,7 +110,7 @@ const FavoriteSelectScreen = ({navigation}) => {
         <View style={styles.btnArea2}>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => navigation.popToTop('Login')}>
+            onPress={completeSignup}>
             <Text style={(styles.Text, {color: 'white'})}>회원가입</Text>
           </TouchableOpacity>
         </View>
