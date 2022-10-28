@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {Image}from 'react-native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -32,8 +33,8 @@ const MainStack = () => {
 const PolicyListStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="List" component={PolicyListScreen} />
-      <Stack.Screen name="Detail"  component={PolicyDetailScreen} />
+      <Stack.Screen name="List" options={{ headerShown: false }} component={PolicyListScreen} />
+      <Stack.Screen name="Detail"  options={{ headerShown: false }} component={PolicyDetailScreen} />
     </Stack.Navigator>
   );
 };
@@ -70,7 +71,7 @@ const MyPageStack = () => {
       <Stack.Screen name="Myinfo"
       options={{ headerShown: false }} 
       component={MyPageScreen} />
-      <Stack.Screen name="Scrab" component={ScrapStack} />
+      <Stack.Screen name="Scrab" options={{ headerShown: false }} component={ScrapStack} />
       <Stack.Screen
         name="ChangeUserInfo"
         options={{ headerShown: false }}
@@ -85,24 +86,35 @@ export default function  TitleStack ()  {
   return (
     <Tab.Navigator
       initialRouteName="MainStack"
-      tabBarOptions={{
-        activeTintColor: '#7DD421',
-        inactiveTintColor: '#222222',
+      screenOptions={{
+        activeTintColor: '#414bb2',
       }}>
       <Tab.Screen
         name="Main"
         component={MainStack}
-        options={{ headerShown: false }}
+        options={{ 
+          headerShown: false,
+          tabBarLabel : '메인',
+          tabBarIcon :  () => <Image source={require('../../assets/home_icon.png')} style={{width : 30, height : 30}} />
+        }}
       />
       <Tab.Screen
         name="ListStack"
         component={PolicyListStack}
-        options={{ headerShown: false }}
+        options={{ 
+          headerShown: false,
+          tabBarLabel : '리스트',
+          tabBarIcon :  () => <Image source={require('../../assets/list_icon.png')} style={{width : 30, height : 30}} />
+        }}
       />
       <Tab.Screen
         name="MypageStack"
         component={MyPageStack}
-        options={{ headerShown: false }}
+        options={{ 
+          headerShown: false,
+          tabBarLabel : '마이페이지',
+          tabBarIcon :  () => <Image source={require('../../assets/my_icon.png')} style={{width : 30, height : 30}} />
+        }}
       />
     </Tab.Navigator>
   );

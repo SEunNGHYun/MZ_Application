@@ -9,7 +9,6 @@ export default function MyPolicyListCompoent({item, navigation}) {
   
   return (
     <TouchableOpacity style={styles.component} onPress={() => navigation.navigate("MyScrapDetail", {item})}>
-    {console.log(item)}   
     <View style={styles.header}>
         <Text numberOfLines={1} ellipsizeMode={"tail"} style={styles.headerFont}>{item["policy_name"]}</Text>
       </View>

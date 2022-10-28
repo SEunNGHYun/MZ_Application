@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text , StyleSheet, TouchableOpacity} from 'react-native'
+import { View, Text , StyleSheet, TouchableOpacity, Image} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
 export default function Header({title}) {
@@ -8,10 +8,10 @@ export default function Header({title}) {
   return (
     <View style={styles.header}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>뒤로가기</Text> 
+        <Image source={require('../assets/back_icon.png')} style={styles.size}/>
       </TouchableOpacity>
-      <Text>{title}</Text>
-      <View/>
+      <Text style={styles.title}>{title}</Text>
+      <View style={styles.size}/>
     </View>
   )
 }
@@ -22,7 +22,13 @@ const styles = StyleSheet.create({
     flexDirection : 'row',
     justifyContent : 'space-between',
     borderBottomWidth : 1,
-    height : 40,
+    height : 55,
+    paddingHorizontal : 15,
     borderColor : 'grey'
+  },
+  size : {width : 35, height : 35},
+  title : {
+    fontSize : 20,
+    fontWeight : '500'
   }
 })

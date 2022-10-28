@@ -49,7 +49,6 @@ const ChangeFavoriteScreen = ({navigation, route}) => {
   };
 
   const completeSignup = async () => {
-    console.log(selectFav)
     if (selectFav.length == 0) {
       Alert.alert(
         '하나 이상 선택해주세요', 

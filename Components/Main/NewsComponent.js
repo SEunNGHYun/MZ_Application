@@ -6,8 +6,8 @@ import {
 import { news } from '../../assets/imgs'
 
 export default function NewsComponent({item, index, rdmImgs, navigation}) {
-  const title = item.title.replace("&apos;", '').replace("&quot;", '').replace("<b>", '').replace("</b>", "")
-  
+  const title = item.title.replace("&apos;", '').replace("&quot;", '').replace("<b>", '').replace("</b>", "").replace("&apos;", '').replace("&quot;", '')
+
   const handlePress = useCallback(async () => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(item.link);

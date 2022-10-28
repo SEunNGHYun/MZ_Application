@@ -1,9 +1,10 @@
 import React , {useState, useContext} from 'react'
+import Header from '../../Header'
 import { SafeAreaView, View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert} from 'react-native'
 import { keyContext} from '../../KeyStore'
 import { deleteRequest } from '../../config'
 
-export default function MyPolicyDetailScreen({route}) {
+export default function MyPolicyDetailScreen({route, navigation}) {
   const [access_token] = useContext(keyContext)
   const data = route.params.item
 
@@ -12,14 +13,25 @@ export default function MyPolicyDetailScreen({route}) {
     const response = await deleteRequest(`/scrab?policy_id=${data["policy_id"]}`, access_token)
 
     if (response.status == 201) {
-      console.log("이미 삭제함")
+      Alert.alert(
+        "이미 삭제된 스크랩입니다.",
+        ""
+      )
     }else if (response.status == 202) {
-      console.log("스크랩 삭제됨")
+      Alert.alert(
+        "스크랩 삭제 성공",
+        ""
+        ,[{
+          title : "ok",
+          onPress : () =>  navigation.replace('Myinfo')
+        }]
+      )
     }
   }
   
   return (
     <SafeAreaView style={{flex : 1, backgroundColor: 'white'}}>
+      <Header title="스크랩상세"/>
       <View style={styles.view}>
       <View style={styles.header}>
         <View style={{width :'85%'}}>

@@ -33,11 +33,12 @@ export default function MyPageScreen({navigation}) {
   }
 
   async function leaveUser () {
-    const response = await deleteRequest('/user', access_token)
+    // const response = await deleteRequest('/user', access_token)
 
-    if(response.status == 200) {
-      setKeyStore("")
-    }
+    // if(response.status == 200) {
+    //   setKeyStore("")
+    // }
+    navigation.replace('Login')
   }
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export default function MyPageScreen({navigation}) {
           <TouchableOpacity
             onPress={leaveUser}
             style={styles.btn}>
-            <Text style={styles.font}>회원 탈퇴</Text>
+            <Text style={styles.font}>로그아웃</Text>
           </TouchableOpacity>
         </View>
         <View>

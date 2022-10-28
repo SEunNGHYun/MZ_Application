@@ -1,5 +1,6 @@
 import React , {useState, useContext} from 'react'
 import { SafeAreaView, View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert} from 'react-native'
+import Header from '../Header'
 import {keyContext} from '../KeyStore'
 import { postRequest } from '../config'
 
@@ -36,6 +37,7 @@ export default function PolicyDetailScreen({route}) {
   
   return (
     <SafeAreaView style={{flex: 1, backgroundColor : 'white'}}>
+      <Header title="정책 상세"/>
       <View style={styles.view}>
         <View style={styles.header}>
           <View style={{width :'85%'}}>
