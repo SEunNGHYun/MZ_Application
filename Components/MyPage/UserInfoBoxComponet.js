@@ -6,7 +6,7 @@ export default function UserInfoBoxComponet({id, age, state, city, fav}) {
     <View style={styles.box}>
       <View />
       <View style={styles.iconNInfos}>
-        <Image source={require('../../assets/icon.png')} style={styles.icon}/>
+        <Image source={require('../../assets/duck_icon.png')} style={styles.icon}/>
         <View style={styles.infos}>
           <Text style={styles.font}>{id}</Text>
           <View style={{flexDirection : "row"}}>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     alignItems : 'center'
   },
   icon : {
-    borderWidth : 3,
+    borderWidth : 1,
     borderColor : "black",
     borderRadius : 50,
     width : 50,
