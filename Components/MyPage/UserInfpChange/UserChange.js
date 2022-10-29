@@ -69,8 +69,7 @@ const SignupScreen = ({navigation}) => {
 
   const moveToFav = () => {
     if (password.length > 0 && age > 0 && state.length > 0 && city.length > 0 ){
-      navigation.navigate('Favorite',  {
-        id,
+      navigation.navigate('ChangeUserFav',  {
         password,
         age,
         state,
