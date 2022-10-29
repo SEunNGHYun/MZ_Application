@@ -1,6 +1,6 @@
 module.exports = {
   server: "http://54.180.114.129:3000",
-  testServer : "http://localhost:3000",
+  testServer : "http://54.180.114.129:3000",
   access_token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWFhIiwiaWF0IjoxNjY2MzUxNDc3LCJleHAiOjE2NjYzNjk0Nzd9.s2XNzHbcYsxhttToD9ubOXZyiTotGwMUyADxxof04_o",
   postRequest : async (url ,body, token = null) =>  {
 
@@ -16,7 +16,7 @@ module.exports = {
       requestForm["headers"]["Authorization"] = token
     }
 
-    let response = await fetch(`http://localhost:3000${url}`, requestForm)
+    let response = await fetch(`http://54.180.114.129:3000${url}`, requestForm)
 
     return await response.json()
   },
@@ -33,12 +33,12 @@ module.exports = {
       requestForm["headers"]["Authorization"] = token
     }
 
-    let response = await fetch(`http://localhost:3000${url}`, requestForm)
+    let response = await fetch(`http://54.180.114.129:3000${url}`, requestForm)
 
     return await response.json()
   },
   patchRequest : async (url ,body,token = null) =>  {
-    const response = await fetch(`http://localhost:3000${url}`, {     
+    const response = await fetch(`http://54.180.114.129:3000${url}`, {     
       method : "PATCH",
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ module.exports = {
       requestForm["headers"]["Authorization"] = token
     }
 
-    let response = await fetch(`http://localhost:3000${url}`, requestForm)
+    let response = await fetch(`http://54.180.114.129:3000${url}`, requestForm)
 
     return await response.json()
   },

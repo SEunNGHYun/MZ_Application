@@ -70,7 +70,7 @@ const App = ({navigation}) => {
   const React$Node = () => {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor : 'white'}}>
           <View style={styles.container}>
             <View style={styles.topArea}>
               <Text style={styles.helloText}>환영합니다.</Text>
@@ -100,14 +100,10 @@ const App = ({navigation}) => {
             
             <View style={styles.btnArea2}>
               <TouchableOpacity style={styles.grayBtn} onPress={move}>
-                <Text style={(styles.Text, {color: '#9b9b9b'})}>회원가입</Text>
+                <Text style={(styles.Text, {color: '#9b9b9b'})}>회원가입 하기</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity disabled={true} style={styles.grayBtn} onPress={move}>
-                <Text style={(styles.Text, {color: '#9b9b9b'})}>
-                  비밀번호를 잊으셨나요?
-                </Text>
-              </TouchableOpacity>
+
             </View>
           </View>
         </SafeAreaView>
@@ -126,11 +122,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   topArea: {
-    height: hp(20),
+    height: hp(30),
     justifyContent: 'center',
   },
   helloText: {
-    fontSize: 30,
+    fontSize: 35,
+    color : '#609ad8'
   },
   TextArea: {
     justifyContent: 'center',
@@ -145,7 +142,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderColor: 'black',
     width: '100%',
-    height: hp(6),
+    height: 48,
     marginTop : 5,
     marginBottom : 30,
     paddingLeft: 10,
@@ -153,18 +150,18 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    height: hp(6),
+    height: Platform.OS == "ios" ? 48: 45 ,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0D47A1',
+    backgroundColor: '#609ad8',
   },
   btnArea2: {
     alignItems : "flex-end",
     justifyContent: 'flex-start',
   },
   grayBtn: {
-    paddingTop: 18,
+    
   },
 });
 export default App;

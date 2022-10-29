@@ -11,8 +11,9 @@ import {
   TouchableOpacity,
   FlatList,
   Alert,
+  Platform
 } from 'react-native';
-
+import Header from '../Header'
 import FavoriteBox from './FavoriteBox';
 import {postRequest, getRequest} from '../config';
 
@@ -86,6 +87,7 @@ const FavoriteSelectScreen = ({navigation, route}) => {
   const React$Node = () => {
     return (
       <SafeAreaView style={styles.container}>
+        <Header title="회원가입"/>
         <View style={styles.topArea}>
           <Text style={styles.helloText}>관심분야 선택 (중복)</Text>
         </View>
@@ -137,14 +139,15 @@ const styles = StyleSheet.create({
   helloText: {
     fontSize: 30,
     paddingLeft: 10,
+    color : '#609ad8'
   },
   btn: {
     width: '100%',
-    height: hp(6),
+    height: Platform.OS == "ios" ? 48: 45 ,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0D47A1',
+    backgroundColor: '#609ad8',
   },
   btnArea2: {
     flex: 1,

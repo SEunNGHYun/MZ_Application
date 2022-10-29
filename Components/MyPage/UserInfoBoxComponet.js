@@ -17,8 +17,8 @@ export default function UserInfoBoxComponet({id, age, state, city, fav}) {
         </View>
       </View>
       <View style={styles.intersets}>
-        <Text style={styles.font}>관심 분야  </Text>
-        {fav.map(({interest_field}, index) => <Text key={index} style={styles.font}>#{interest_field}</Text>)}
+        <Text style={styles.font}>관심 분야 </Text>
+        <Text numberOfLines={2} style={styles.font}>{fav}</Text>
       </View>
     </View>
   )
@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
   box : {
     borderWidth : 2,
     borderRadius : 40,
-    marginTop : 50,
+    marginTop : 40,
     height : '25%',
     alignItems : "center",
-    justifyContent : "space-between"
+    justifyContent : 'space-evenly'
   },
   iconNInfos : {
     flexDirection : 'row',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight : '500' 
   },
   intersets : {
-    flexDirection : 'row',
-    marginBottom : 20
+    alignItems :'center',
+    width : '56%',
   }
 })

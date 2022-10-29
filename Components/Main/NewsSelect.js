@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet , TouchableOpacity} from 'react-native'
+import { View, StyleSheet , TouchableOpacity, Platform} from 'react-native'
 
 export default function NewsSelect({changeViewNewsData, newsIndex, randomImageChoice}) {
   const pressOption = (index) => {
@@ -45,18 +45,18 @@ export default function NewsSelect({changeViewNewsData, newsIndex, randomImageCh
 const styles = StyleSheet.create({
   butForm :{
     alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 12,
+    // justifyContent: 'center',
+    marginTop : 0
   },
   newsIndex: {
     width: 50,
-    height: 10,
+    height: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   newsIndexChangeCircle: {
-    width: 10,
-    height: 10,
+    width: 11,
+    height: 11,
     borderWidth: 1,
     borderRadius: 10,
   },

@@ -7,11 +7,13 @@ export default function Header({title}) {
 
   return (
     <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image source={require('../assets/back_icon.png')} style={styles.size}/>
+      <TouchableOpacity style={styles.touhableSize} onPress={() => navigation.goBack()}>
+        <Image
+        resizeImage="cotain" 
+        source={require('../assets/back_icon.png')} style={styles.size}/>
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.size}/>
+      <View style={styles.touhableSize}/>
     </View>
   )
 }
@@ -21,14 +23,15 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     flexDirection : 'row',
     justifyContent : 'space-between',
-    borderBottomWidth : 1,
+    borderBottomWidth : 0.5,
     height : 55,
     paddingHorizontal : 15,
-    borderColor : 'grey'
+    borderColor : 'gray'
   },
-  size : {width : 35, height : 35},
+  touhableSize : {width : 40, height : 40, alignItems : 'center', justifyContent : "center"},
+  size : {width : 25, height : 25},
   title : {
-    fontSize : 20,
+    fontSize : 18,
     fontWeight : '500'
   }
 })

@@ -11,14 +11,15 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
+  Platform
 } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 import Header from '../../Header'
+import DropDownPicker from 'react-native-dropdown-picker';
 import {ages} from '../../config'
 import {reginCode, cityItems} from '../../utils'
 
 
-const UserChangeScreen = ({navigation}) => {
+const SignupScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [conformPassword, setConformPassword] = useState('');
   const [check, setCheck] = useState(false)
@@ -68,7 +69,8 @@ const UserChangeScreen = ({navigation}) => {
 
   const moveToFav = () => {
     if (password.length > 0 && age > 0 && state.length > 0 && city.length > 0 ){
-      navigation.navigate('ChangeUserFav',  {
+      navigation.navigate('Favorite',  {
+        id,
         password,
         age,
         state,
@@ -84,8 +86,8 @@ const UserChangeScreen = ({navigation}) => {
 
   const React$Node = () => {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor : "white"}}>
-          <Header title={"회원수정"}/>
+      <SafeAreaView style={{ backgroundColor : "white"}}>
+        <Header title="회원수정"/>
         <View style={styles.container}>
           <View style={styles.topArea}>
             <Text style={styles.helloText}>회원수정</Text>
@@ -108,7 +110,7 @@ const UserChangeScreen = ({navigation}) => {
               onChangeText={confirmPass}
               secureTextEntry={true}
             />
-            {show ? check ? <Text style={{color : 'black'}}>확인됨</Text> : <Text style={{color : 'red'}}>비번 틀림</Text> : <View/> }
+            {show ? check ? <Text style={{color : '#609ad8' , marginTop : 5}}>확인됨</Text> : <Text style={{color : 'red', marginTop : 5}}>비번 틀림</Text> : <View/> }
             <Text style={styles.Text}>나이선택</Text>
             <DropDownPicker
                   open={openAgeSelect}
@@ -155,7 +157,7 @@ const UserChangeScreen = ({navigation}) => {
             />
             </View>
           </View>
-          <View style={{flex : 0.6}}>
+          <View style={{height : hp(20)}}>
             <TouchableOpacity
                 style={styles.btn}
                 onPress={moveToFav}>
@@ -171,17 +173,18 @@ const UserChangeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: hp(100),
     paddingHorizontal: 15,
     flexDirection: 'column',
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 0.6,
+    height: hp(15),
     justifyContent: 'center',
   },
   helloText: {
     fontSize: 30,
+    color : '#609ad8'
   },
   TextArea: {
     justifyContent: 'center',
@@ -191,14 +194,15 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   formArea: {
-    flex: 1.5,
+    height: Platform.OS == "ios" ? hp(48) : hp(50),
+    justifyContent: 'center',
     zIndex : 3000
   },
   textInput: {
     borderWidth: 1.1,
     borderColor: 'black',
     borderRadius: 7,
-    height: hp(6),
+    height: Platform.OS == "ios" ? 48: 45 ,
     paddingHorizontal: 10,
   },
   areaSelectBox: {
@@ -209,11 +213,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     zIndex : 300,
     width: '100%',
-    height: hp(6),
+    height: Platform.OS == "ios" ? 48: 45 ,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0D47A1',
+    backgroundColor: '#609ad8',
   },
 });
-export default UserChangeScreen;
+export default SignupScreen;

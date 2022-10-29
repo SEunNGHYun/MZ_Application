@@ -17,7 +17,7 @@ export default function MyPageScreen({navigation}) {
   const [age, setAge] = useState('')
   const [state, setState] = useState()
   const [city, setCity] = useState()
-  const [interest, setInterest] = useState([])
+  const [interest, setInterest] = useState('')
   const [scrabs, setScrabs] = useState([])
   
   async function getUserData () {
@@ -28,7 +28,9 @@ export default function MyPageScreen({navigation}) {
       setAge(response["info"]["user_age"])
       setCity(response["info"]["user_city"])
       setState(response["info"]["user_state"])
-      setInterest(response["info"]["interests"])
+      let interestFeild = ''
+      response["info"]["interests"].forEach(({interest_field}) => interestFeild = interestFeild + "#" + interest_field + " ")
+      setInterest(interestFeild)
     }
   }
 

@@ -13,7 +13,7 @@ export default function FavoriteBox({item, pressFavorite, selectFav}) {
   return (    
     <TouchableOpacity 
       style={[styles.selectBox, {
-        borderColor : selectFav.includes(item.interest_code) ? "blue" : "black"
+        borderColor : selectFav.includes(item.interest_code) ? '#609ad8' : "gray"
       }]} 
       onPress={() => pressFavorite(item.interest_code)}>
         <Image 
@@ -21,7 +21,9 @@ export default function FavoriteBox({item, pressFavorite, selectFav}) {
           resizeMode="cover"
           source={{uri: item.interest_img}} />
         <View style={styles.favField}>
-          <Text>{item.interest_field}</Text>
+        <Text style={{
+            color : selectFav.includes(item.interest_code) ? '#609ad9' : "black"
+          }}>{item.interest_field}</Text>
         </View>
     </TouchableOpacity>
   )
@@ -29,16 +31,17 @@ export default function FavoriteBox({item, pressFavorite, selectFav}) {
 
 const styles = StyleSheet.create({
   selectBox: {
-    borderWidth : 2,
+    borderWidth : 3,
     width : "47%",
-    height : 160,
+    height : 140,
+    marginVertical :10 
   },
   favImag : {
     width : '100%',
     height : 105,
   },
   favField : {
-    height : 55,
+    height : 30,
     alignItems : "center",
     justifyContent: "center"
   }

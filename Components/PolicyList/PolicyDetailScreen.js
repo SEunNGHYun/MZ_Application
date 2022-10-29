@@ -29,9 +29,15 @@ export default function PolicyDetailScreen({route}) {
     const response = await postRequest('/scrab', save_data, access_token)
 
     if (response.status == 201) {
-      console.log("스크랩 되어있음")
+      Alert.alert(
+        "이미 스크랩 되었습니다.",
+        ""
+      )
     }else if (response.status == 202) {
-      console.log("스크랩 ㅇㅋ")
+      Alert.alert(
+        "스크랩 성공",
+        ""
+      )
     }
   }
   

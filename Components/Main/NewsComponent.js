@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     fontSize : 10
   },
   newsTextForm : {
-    marginBottom : 15
+    marginBottom : 10
   }
 })

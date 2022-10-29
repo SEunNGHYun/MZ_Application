@@ -12,6 +12,7 @@ import {
   Alert,
   TextInput,
 } from 'react-native';
+import Header from '../Header'
 import DropDownPicker from 'react-native-dropdown-picker';
 import {ages} from '../config'
 import {reginCode, cityItems} from '../utils'
@@ -86,6 +87,7 @@ const SignupScreen = ({navigation}) => {
   const React$Node = () => {
     return (
       <SafeAreaView style={{flex: 1, backgroundColor : "white"}}>
+        <Header title="회원가입"/>
         <View style={styles.container}>
           <View style={styles.topArea}>
             <Text style={styles.helloText}>회원가입</Text>
@@ -115,7 +117,7 @@ const SignupScreen = ({navigation}) => {
               onChangeText={confirmPass}
               secureTextEntry={true}
             />
-            {show ? check ? <Text style={{color : 'black'}}>확인됨</Text> : <Text style={{color : 'red'}}>비번 틀림</Text> : <View/> }
+            {show ? check ? <Text style={{color : '#609ad8' , marginTop : 5}}>확인됨</Text> : <Text style={{color : 'red', marginTop : 5}}>비번 틀림</Text> : <View/> }
             <Text style={styles.Text}>나이선택</Text>
             <DropDownPicker
                   open={openAgeSelect}
@@ -178,17 +180,18 @@ const SignupScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: hp(100),
     paddingHorizontal: 15,
     flexDirection: 'column',
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 0.6,
+    height: hp(15),
     justifyContent: 'center',
   },
   helloText: {
     fontSize: 30,
+    color : '#609ad8'
   },
   TextArea: {
     justifyContent: 'center',
@@ -198,14 +201,15 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   formArea: {
-    flex: 2.5,
+    height: Platform.OS == "ios" ? hp(53) : hp(57),
+    justifyContent: 'center',
     zIndex : 3000
   },
   textInput: {
     borderWidth: 1.1,
     borderColor: 'black',
     borderRadius: 7,
-    height: hp(6),
+    height: Platform.OS == "ios" ? 48: 45 ,
     paddingHorizontal: 10,
   },
   areaSelectBox: {
@@ -216,11 +220,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     zIndex : 300,
     width: '100%',
-    height: hp(6),
+    height: Platform.OS == "ios" ? 48: 45 ,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0D47A1',
+    backgroundColor: '#609ad8',
   },
 });
 export default SignupScreen;

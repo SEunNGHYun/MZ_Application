@@ -62,8 +62,9 @@ export default function MainScreen({navigation}) {
   }, []); //데이터를 불러오는 함수를 실행(맨 처음에)
 
   return (
-    <SafeAreaView style={styles.view}>
-      <Text style={[styles.headerTitle, {marginLeft: 18}]}>오늘의 이슈</Text>
+    <SafeAreaView style={{flex: 1, backgroundColor : 'white'}}>
+      <View style={styles.view}>
+      <Text style={[styles.headerTitle, {marginLeft: 13}]}>오늘의 이슈</Text>
       <View style={styles.todayNews}>
         {viewNewsList.length > 0 && (
           <FlatList
@@ -119,7 +120,8 @@ export default function MainScreen({navigation}) {
               )}
             </View>
           </View>
-        
+
+      </View>
       </View>
     </SafeAreaView>
   );
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     backgroundColor : "white",
-    paddingVertical: 10,
+    paddingTop: 10,
   },
   headerTitle: {
     fontSize: 20,
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
   },
   todayNews: {
     width: '100%',
-    height: '57%',
+    height: Platform.OS == "ios" ? '53%' :'55%',
   },
   newsForm: {
     height : "100%",
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
   spaceForm: {
     width: '100%',
     height: '48%',
-    paddingTop: 30,
+    paddingTop: 20,
     alignItems: 'center',
   },
   spaceBox: {

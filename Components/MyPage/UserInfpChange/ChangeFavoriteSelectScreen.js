@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   FlatList,
   Alert,
+  Platform
 } from 'react-native';
 import Header from '../../Header'
 import FavoriteBox from './FavoriteBox';
@@ -142,11 +143,11 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '100%',
-    height: hp(6),
+    height: Platform.OS == "ios" ? 48: 45 ,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0D47A1',
+    backgroundColor: '#609ad8',
   },
   btnArea2: {
     flex: 1,

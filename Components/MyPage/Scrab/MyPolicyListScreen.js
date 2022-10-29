@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   view: {
     flex: 1,
     marginHorizontal: 10,
-    marginHorizontal: Platform.OS == 'ios' ? 10 : 0,
   },
   notFound: {
     flex: 1,
