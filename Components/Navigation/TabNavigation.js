@@ -95,7 +95,7 @@ export default function  TitleStack ()  {
         options={{ 
           headerShown: false,
           tabBarLabel : '메인',
-          tabBarIcon :  () => <Image source={require('../../assets/home_icon.png')} style={{width : 30, height : 30}} />
+          tabBarIcon :  () => <Image source={require('../../imgs/home_icon.jpg')} style={{width : 30, height : 30}} />
         }}
       />
       <Tab.Screen
@@ -104,7 +104,7 @@ export default function  TitleStack ()  {
         options={{ 
           headerShown: false,
           tabBarLabel : '리스트',
-          tabBarIcon :  () => <Image source={require('../../assets/list_icon.png')} style={{width : 30, height : 30}} />
+          tabBarIcon :  () => <Image source={require('../../imgs/list_icon.jpg')} style={{width : 30, height : 30}} />
         }}
       />
       <Tab.Screen
@@ -113,7 +113,7 @@ export default function  TitleStack ()  {
         options={{ 
           headerShown: false,
           tabBarLabel : '마이페이지',
-          tabBarIcon :  () => <Image source={require('../../assets/my_icon.png')} style={{width : 30, height : 30}} />
+          tabBarIcon :  () => <Image source={require('../../imgs/my_icon.jpg')} style={{width : 30, height : 30}} />
         }}
       />
     </Tab.Navigator>

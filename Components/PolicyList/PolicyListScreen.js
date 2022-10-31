@@ -45,7 +45,7 @@ export default function PolicyListScreen({navigation}) {
           />
         ) : (
           <View style={styles.notFound}>
-            <Text>정보가 없습니다.</Text>
+            <Text>로딩중...</Text>
           </View>
         )}
       </View>

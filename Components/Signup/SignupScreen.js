@@ -141,7 +141,7 @@ const SignupScreen = ({navigation}) => {
                   setOpen={setOpenStateSelect}
                   onOpen={stateSelectOpen}
                   setValue={setState}
-                  dropDownDirection="BOTTOM"
+                  dropDownDirection="TOP"
                   placeholder="도"
                   onChangeValue={selectState}
                   maxHeight={100}
@@ -149,13 +149,13 @@ const SignupScreen = ({navigation}) => {
             <DropDownPicker
                   open={openCitySelect}
                   style={{width : wp(45), borderColor : enableCitySelect ? "gray" : 'black'}}
-                  placeholderStyle={{color : enableCitySelect ?'gray' : 'black'}}
+                  placeholderStyle={{color : enableCitySelect ? 'gray' : 'black'}}
                   containerStyle={{width : wp(45)}}
                   value={city}
                   items={cityitems}
                   placeholder="시"
                   disabled={enableCitySelect}
-                  dropDownDirection="BOTTOM"
+                  dropDownDirection="TOP"
                   setOpen={setOpenCitySelect}
                   onOpen={citySelectOpen}
                   setValue={setCity}
@@ -164,7 +164,7 @@ const SignupScreen = ({navigation}) => {
             />
             </View>
           </View>
-          <View style={{flex : 0.6}}>
+          <View style={styles.btnAra}>
             <TouchableOpacity
                 style={styles.btn}
                 onPress={moveToFav}>
@@ -217,7 +217,6 @@ const styles = StyleSheet.create({
     justifyContent : 'space-between',
   },
   btn: {
-    marginTop: 20,
     zIndex : 300,
     width: '100%',
     height: Platform.OS == "ios" ? 48: 45 ,
@@ -226,5 +225,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#609ad8',
   },
+  btnAra : {
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    flex : 0.5,
+  }
 });
 export default SignupScreen;

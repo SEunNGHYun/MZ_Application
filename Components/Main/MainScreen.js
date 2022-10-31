@@ -13,7 +13,7 @@ import NewsComponent from './NewsComponent';
 import PlaceComponent from './PlaceComponent';
 import { keyContext }from '../KeyStore'
 import { getRequest } from '../config.js'
-import { space, news } from '../../assets/imgs'
+import { space, news } from '../../imgs/imgs'
 
 export default function MainScreen({navigation}) {
   const [access_token] = useContext(keyContext)

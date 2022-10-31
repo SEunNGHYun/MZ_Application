@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, Text, TouchableOpacity , Linking} from 'react-
 import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { news } from '../../assets/imgs'
+import { news } from '../../imgs/imgs'
 
 export default function NewsComponent({item, index, rdmImgs, navigation}) {
   const title = item.title.replace("&apos;", '').replace("&quot;", '').replace("<b>", '').replace("</b>", "").replace("&apos;", '').replace("&quot;", '')

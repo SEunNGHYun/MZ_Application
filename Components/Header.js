@@ -10,7 +10,7 @@ export default function Header({title}) {
       <TouchableOpacity style={styles.touhableSize} onPress={() => navigation.goBack()}>
         <Image
         resizeImage="cotain" 
-        source={require('../assets/back_icon.png')} style={styles.size}/>
+        source={require('../imgs/back_icon.jpg')} style={styles.size}/>
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <View style={styles.touhableSize}/>

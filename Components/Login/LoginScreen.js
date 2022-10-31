@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#609ad8',
   },
   btnArea2: {
+    marginTop : 13,
     alignItems : "flex-end",
     justifyContent: 'flex-start',
   },
