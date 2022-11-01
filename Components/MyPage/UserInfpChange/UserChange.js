@@ -133,7 +133,7 @@ const SignupScreen = ({navigation}) => {
                   setOpen={setOpenStateSelect}
                   onOpen={stateSelectOpen}
                   setValue={setState}
-                  dropDownDirection="TOP"
+                  dropDownDirection={Platform.OS == 'ios' ?  'BOTTOM' : 'TOP'}
                   placeholder="도"
                   onChangeValue={selectState}
                   maxHeight={100}
@@ -147,7 +147,7 @@ const SignupScreen = ({navigation}) => {
                   items={cityitems}
                   placeholder="시"
                   disabled={enableCitySelect}
-                  dropDownDirection="TOP"
+                  dropDownDirection={Platform.OS == 'ios' ?  'BOTTOM' : 'TOP'}
                   setOpen={setOpenCitySelect}
                   onOpen={citySelectOpen}
                   setValue={setCity}

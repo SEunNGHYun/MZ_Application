@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
+  Platform,
 } from 'react-native';
 import Header from '../Header'
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -141,9 +142,10 @@ const SignupScreen = ({navigation}) => {
                   setOpen={setOpenStateSelect}
                   onOpen={stateSelectOpen}
                   setValue={setState}
-                  dropDownDirection="TOP"
+                  dropDownDirection={Platform.OS == 'ios' ? 'BOTTOM' : 'TOP'}
                   placeholder="도"
                   onChangeValue={selectState}
+                  zIndex={5000}
                   maxHeight={100}
             />
             <DropDownPicker
@@ -155,7 +157,7 @@ const SignupScreen = ({navigation}) => {
                   items={cityitems}
                   placeholder="시"
                   disabled={enableCitySelect}
-                  dropDownDirection="TOP"
+                  dropDownDirection={Platform.OS == 'ios' ?  'BOTTOM' : 'TOP'}
                   setOpen={setOpenCitySelect}
                   onOpen={citySelectOpen}
                   setValue={setCity}
@@ -228,7 +230,8 @@ const styles = StyleSheet.create({
   btnAra : {
     justifyContent: 'flex-end',
     alignItems: 'center',
-    flex : 0.5,
+    flex : Platform.OS == "ios" ? 0: 0.5,
+    height: Platform.OS == "ios" ? hp(10) : 0,
   }
 });
 export default SignupScreen;
