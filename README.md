@@ -16,8 +16,9 @@
   
 ### 🧳 개발 맴버
 <hr/>
-  신효민 <Front> [깃허브 바로가기](https://github.com/BeanPhone)
-  윤승현 <Front, Back> [깃허브 바로가기](https://github.com/SEunNGHYun)
+  * 신효민 [마크다운_1](https://velog.io/@swerty14/Markdown-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1)
+
+  * 윤승현 [깃허브 바로가기](https://github.com/SEunNGHYun)
   
 ### 🕹️ 개발 환경
 <hr/>
