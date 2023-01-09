@@ -23,10 +23,15 @@
   
 ### 🕹️ 개발 환경
 <hr/>
+
       React-Native 0.70.1 <br/>
+
       Android Studio 🐬 <br/>
+      
       Xcode 14.0.1 <br/>
+      
       npm 8.19.1 <br/>
+      
       cocoapods 1.11.2 <br/>
 
 ### 🤖 구현 기능
