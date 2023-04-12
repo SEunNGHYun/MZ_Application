@@ -43,8 +43,6 @@
 
 ### 🤖 구현 기능
 
-  [상세 정보](https://www.notion.so/MZ-41f433a90e2f4d1c85ac1314964088e9)
-
 <hr/>
 
     
