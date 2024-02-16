@@ -43,7 +43,7 @@
 
 ### 🔔 스크린 샷과 플로우
 
-![스크린샷과 어플 플로우](https://velog.velcdn.com/images/swerty14/post/1f8724c7-7b16-48b9-844f-5273856740f3/image.jpeg)
+<img src="https://velog.velcdn.com/images/swerty14/post/b72119b0-e8a0-4d61-8c0e-5fc980e0ac85/image.png" width=650 />
 
 ### 🤖 구현 기능
 
